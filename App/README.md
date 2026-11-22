@@ -1,0 +1,38 @@
+# Pokémon-Manager
+
+Die vollständige, langfristige Projekt- und Bedienungsdokumentation steht in:
+
+`C:\Codex\Julian\Pokémon\README.md`
+
+Die App steuert Julians lokalen Pokémon-Arbeitsablauf:
+
+1. Bilddateien werden wie gewohnt im Browser gesucht und gespeichert.
+2. Über **Dateien hinzufügen …** werden mehrere Dateien ausgewählt.
+3. Die App prüft Format, Lesbarkeit, Hash und mögliche Dubletten.
+4. Nach Bestätigung werden neue Dateien nach `S1` kopiert.
+5. **S1 aktualisieren** erzeugt Index und HTML-Auswahlseite.
+6. **Auswahlseite öffnen** öffnet die gerenderte Druck- und Auswahlansicht im Browser.
+
+Die App lädt selbst keine Internetdateien herunter, verschiebt keine Originale und löscht keine Bilder.
+Die Datenablage wird beim ersten Start gewählt und danach in `%APPDATA%\PokemonManager\config.json` gespeichert.
+Deutsch ist die Standardsprache der gesamten Anwendung. Über das Dropdown **Sprache** kann zusätzlich Englisch ausgewählt werden; die Druck- und Auswahlseite bleibt für den Schulablauf deutsch.
+
+Vor jeder Änderung an `S1`, `Index` oder der HTML-Auswahl wird automatisch eine geprüfte Sicherung unter `Backups` erstellt. Standardmäßig werden die fünf neuesten Sicherungen behalten. Über **Wiederherstellen …** kann ein Sicherungsstand nach Eingabe der Administrator-PIN zurückgespielt werden.
+
+Die Administrator-PIN ist vierstellig, wird nicht im Klartext gespeichert und schützt nur sensible Verwaltungsaktionen. Der normale Bildimport und die Druckauswahl benötigen keine PIN. Der Eigentümer sollte die PIN vor der Übergabe an Julian einmalig über **Administration …** einrichten.
+
+## Installation
+
+1. `Pokemon-Manager-Setup.exe` auf Julians Rechner kopieren und starten.
+2. Die Installation erfolgt pro Benutzer und benötigt normalerweise keine Administratorrechte.
+3. Beim ersten Start den bestehenden Projektordner `C:\Codex\Julian\Pokémon` auswählen, sofern dieser verwendet wird.
+4. Danach kann die App über das Startmenü geöffnet werden.
+
+Die App legt fehlende Arbeitsordner wie `Eingang`, `S1`, `Index`, `Archiv`, `Protokolle` und `Backups` selbstständig an.
+
+Für spätere Programmänderungen wird die Versionsnummer in
+`C:\Codex\Julian\Pokémon\VERSION.json` erhöht und anschließend
+`C:\Codex\Julian\Pokémon\Installer\build_setup.ps1` ausgeführt. Die daraus entstehende
+`Pokemon-Manager-Setup.exe` ist zugleich Installations- und Update-Datei.
+
+Der Build erzeugt außerdem eine SHA-256-Datei, ein Release-Manifest und Release-Notizen. Die App lädt keine Updates automatisch aus dem Internet.

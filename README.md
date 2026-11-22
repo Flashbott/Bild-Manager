@@ -1,0 +1,235 @@
+# Pokémon-Manager – zentrale Projektdokumentation
+
+Stand: 22.11.2026  
+Aktuelle Programmversion: 0.3.0
+
+Diese README ist die zentrale Nachschlagequelle für den Pokémon-Manager und den dazugehörigen Druckablauf. Sie beschreibt sowohl die Bedienung für Julian als auch die spätere Pflege und Aktualisierung durch den Entwickler.
+
+## 1. Zweck
+
+Der Pokémon-Manager unterstützt Julians lokalen Arbeitsablauf:
+
+1. Bilddateien werden wie gewohnt im Browser gesucht und gespeichert.
+2. Mehrere gespeicherte Bilder werden im Manager ausgewählt.
+3. Die App prüft Dateiformat, Lesbarkeit, Bildgröße und mögliche Duplikate.
+4. Nach einer sichtbaren Prüfung und Bestätigung werden neue Bilder nach `S1` kopiert.
+5. **S1 aktualisieren** erzeugt den Index und die HTML-Auswahlseite neu.
+6. **Auswahlseite öffnen** öffnet die gerenderte Auswahl- und Druckansicht im Browser.
+
+Vor jeder Änderung an `S1`, `Index` oder der HTML-Auswahl erzeugt die App automatisch eine geprüfte lokale Sicherung. Es werden maximal fünf Sicherungsstände behalten.
+
+Die App lädt keine Dateien selbstständig aus dem Internet herunter. Die Internetrecherche und das Speichern der Bilder bleiben bewusst im Browser. Die App verschiebt keine Originale und löscht keine Bilder.
+
+## 2. Installation auf Julians Rechner
+
+Für die Installation wird nur diese Datei verschickt:
+
+    C:\Codex\Julian\Pokémon\Release\Pokemon-Manager-Setup.exe
+
+Vorgehen:
+
+1. Setup-Datei auf Julians Rechner kopieren.
+2. Setup per Doppelklick starten.
+3. Die Installation erfolgt pro Benutzer und benötigt normalerweise keine Administratorrechte.
+4. Pokémon-Manager über das Startmenü öffnen.
+5. Beim ersten Start den gewünschten Projektordner auswählen oder anlegen.
+
+Das Setup enthält die Python-Laufzeit, die benötigten Bibliotheken, die App und den Generator. Python muss auf Julians Rechner nicht separat installiert werden.
+
+Das Setup enthält nicht Julians bisherige Bildsammlung. Wenn Julian mit einem leeren Bestand startet, ist das beabsichtigt. Die App legt fehlende Arbeitsordner selbst an.
+
+Die Installationsdatei enthält außerdem die Bedienungsanleitung und diese README. Das ausgewählte Projektverzeichnis bleibt eine separate Datenablage und muss bei einem neuen Rechner bewusst gewählt oder neu aufgebaut werden.
+
+## 3. Sprache
+
+Deutsch ist die Standardsprache der Anwendung und des Installationsprogramms.
+
+Oben rechts in der App befindet sich das Dropdown **Sprache**. Dort kann zusätzlich Englisch ausgewählt werden. Die Auswahl wird in folgender Datei gespeichert:
+
+    %APPDATA%\PokemonManager\config.json
+
+Die Druck- und Auswahlseite bleibt für den schulischen Ablauf deutsch.
+
+## 4. Bedienung für Julian
+
+### Neue Bilder übernehmen
+
+1. Bild im Browser speichern, zum Beispiel im Ordner `Downloads`.
+2. Pokémon-Manager öffnen.
+3. **Dateien hinzufügen …** anklicken.
+4. Eine oder mehrere Bilddateien auswählen.
+5. In der Importprüfung die Vorschau und den Status kontrollieren.
+6. Nur gültige Dateien mit Status **Bereit** werden über **Nach S1 übernehmen** kopiert.
+7. Danach **S1 aktualisieren** anklicken.
+8. Mit **Auswahlseite öffnen** die Druckseite öffnen.
+
+Unterstützte Bildformate sind PNG, JPG, JPEG, GIF, BMP und WebP.
+
+Die App erkennt exakte Duplikate über einen SHA-256-Hash. Originaldateien bleiben am ursprünglichen Speicherort erhalten.
+
+### Sicherungen und Wiederherstellung
+
+- **Sicherung erstellen** legt jederzeit einen geprüften Sicherungsstand an.
+- Vor **Nach S1 übernehmen**, **S1 aktualisieren** und einer Wiederherstellung wird automatisch gesichert.
+- **Wiederherstellen …** zeigt die letzten fünf gültigen Sicherungen mit Zeitpunkt, Anlass, Dateizahl und Größe.
+- Die Wiederherstellung schützt die aktuelle Datenlage zusätzlich durch eine Vorab-Sicherung.
+- Sicherungen enthalten `S1`, `Index`, `Pokemon-Bilder-Auswahl.html` sowie ein Manifest mit SHA-256-Prüfsummen und einer unkritischen Konfigurationskopie.
+
+### Administrator-PIN
+
+Beim ersten Start kann der Eigentümer eine vierstellige Administrator-PIN einrichten. Sie wird nicht im Klartext gespeichert und gilt nur für dieses Windows-Benutzerkonto. Die PIN ist nur für geschützte Verwaltungsaktionen erforderlich:
+
+- Projektordner wechseln;
+- Sicherung wiederherstellen;
+- Administrator-PIN verwalten.
+
+Der normale Bildimport, die Prüfung, die Übernahme nach `S1`, die S1-Aktualisierung und die Druckauswahl bleiben ohne PIN nutzbar. Vor der Übergabe an Julian sollte der Eigentümer die PIN einmalig einrichten und sicher aufbewahren.
+
+### Druckseite bedienen
+
+Auf der gerenderten Auswahlseite können einzelne Pokémon über die Checkbox ausgewählt werden. Die Seite bietet unter anderem:
+
+- **Alle auswählen**
+- **Nur neue auswählen**
+- **Auswahl löschen**
+- Filter für alle oder nur neue Bilder
+- Druckvorschau
+- ganz unten **Druckauftrag starten**
+
+Vor dem Druck die vollständige Druckvorschau prüfen. Die Ausgabe ist für A4-Hochformat mit zwei Spalten und drei Zeilen, also sechs Bildern pro Seite, ausgelegt.
+
+## 5. Arbeitsordner und Zuständigkeiten
+
+Der beim ersten Start gewählte Projektordner ist die Datenablage. In der Entwicklungsumgebung lautet der aktuelle Pfad:
+
+    C:\Codex\Julian\Pokémon
+
+Die App legt folgende Ordner an:
+
+| Ordner | Zweck |
+|---|---|
+| `Eingang` | optionaler Sammelordner für neue Bilder |
+| `S1` | führender Bestand der Bilddateien |
+| `Index` | technischer und lesbarer Bildindex |
+| `Archiv` | allgemeine Projektablage |
+| `Protokolle` | JSONL-Protokoll der Manager-Aktionen |
+| `Backups` | automatisch verwaltete, geprüfte Sicherungsstände; standardmäßig fünf |
+| `Hilfsdateien` | Generator und technische Hilfsdateien |
+| `Release` | Setup- und Build-Ausgaben in der Entwicklungsumgebung |
+
+Wichtige Ergebnisdateien:
+
+    C:\Codex\Julian\Pokémon\Pokemon-Bilder-Auswahl.html
+    C:\Codex\Julian\Pokémon\Index\pokemon-index.md
+    C:\Codex\Julian\Pokémon\Index\pokemon-index.json
+
+Die HTML-Datei sollte nicht von Hand bearbeitet werden. Änderungen am Bildbestand werden über `S1` und anschließend **S1 aktualisieren** eingepflegt.
+
+## 6. Spätere Updates der App
+
+Ein separates Updateprogramm ist aktuell nicht notwendig. Das neue Setup ist zugleich die Update-Datei.
+
+### Update erstellen
+
+1. Änderungen im App-Code durchführen.
+2. Die zentrale Versionsdatei erhöhen:
+
+       C:\Codex\Julian\Pokémon\VERSION.json
+
+   Beispiel: `0.3.0` → `0.4.0`.
+3. Optional die festgelegten Build-Abhängigkeiten installieren:
+
+       C:\Codex\Julian\Pokémon\Installer\build_setup.ps1 -InstallDependencies
+
+4. Den Build ausführen:
+
+       C:\Codex\Julian\Pokémon\Installer\build_setup.ps1
+
+5. Die neue Datei entsteht hier:
+
+       C:\Codex\Julian\Pokémon\Release\Pokemon-Manager-Setup.exe
+
+6. Vor der Übergabe Prüfsumme und Manifest prüfen. Für Julian genügt anschließend die neue Setup-Datei; die Prüfsummendatei kann zur Kontrolle mitgegeben werden.
+
+### Update installieren
+
+1. Pokémon-Manager schließen.
+2. Neue Setup-Datei per Doppelklick starten.
+3. Die alte Version nicht vorher deinstallieren.
+4. Nach Abschluss die App über das Startmenü starten.
+
+Die Installationskennung und der Installationspfad bleiben gleich. Dadurch ersetzt das Setup die Programmdateien und erhält normalerweise:
+
+- Bilder und Index im gewählten Projektordner;
+- Sprache und Projektpfad in `%APPDATA%\PokemonManager\config.json`;
+- Protokolle im Ordner `Protokolle`.
+
+Die gleiche Inno-Setup-AppId bleibt über Versionen erhalten. Dadurch ist das Setup als manuelle Update-Datei verwendbar. Die App prüft weiterhin nicht online auf neue Versionen und lädt keine Updates automatisch herunter.
+
+Nicht erforderlich für ein Update sind Python, die Build-Werkzeuge, der Ordner `Release\dist` und die Dateien `*.spec` oder `*.iss`.
+
+### Release-Sicherheit
+
+Der Build erzeugt zusätzlich:
+
+    C:\Codex\Julian\Pokémon\Release\Pokemon-Manager-Setup.exe.sha256
+    C:\Codex\Julian\Pokémon\Release\release-manifest.json
+    C:\Codex\Julian\Pokémon\Release\RELEASE_NOTES_0.3.0.md
+
+Die Version ist noch nicht code-signiert. Die SHA-256-Prüfsumme dokumentiert die Integrität; eine spätere Authenticode-Signierung kann ergänzt werden, ohne den Updateablauf grundsätzlich zu ändern.
+
+## 7. Technische Hauptdateien
+
+| Datei | Aufgabe |
+|---|---|
+| `App\pokemon_manager.py` | deutsche Desktop-Oberfläche, Sprachwahl, Importprüfung und Aktionen |
+| `App\pokemon_engine.py` | Verbindung zwischen App und Generator |
+| `Hilfsdateien\pokemon_auswahl_aktualisieren.py` | Index- und HTML-Erzeugung |
+| `Installer\PokemonManager.spec` | PyInstaller-Paketdefinition |
+| `Installer\PokemonManager.iss` | deutschsprachige Inno-Setup-Definition |
+| `Installer\build_setup.ps1` | Build, Tests, Setup, Prüfsumme, Manifest und Release-Notizen |
+| `Installer\requirements-build.txt` | festgelegte Build-Versionen von Pillow und PyInstaller |
+| `VERSION.json` | zentrale Versions- und Schemaangaben |
+| `App\pokemon_backup.py` | Sicherungen, Prüfsummen, Aufbewahrung und Wiederherstellung |
+| `App\pokemon_security.py` | lokale PIN-Richtlinie mit Hashing und Windows-DPAPI |
+| `App\README.md` | kurze technische App-Anleitung; diese Datei ist die zentrale Gesamtdokumentation |
+
+## 8. Aktueller Prüfstand
+
+Stand 22.11.2026:
+
+- Setup-Version `0.2.0` erfolgreich gebaut.
+- App startet als gepackte Windows-Anwendung.
+- Deutsch als Standard und Wechsel Deutsch/Englisch mit Speicherung geprüft.
+- Importprüfung für gültige Datei, Duplikat und ungültige Datei geprüft.
+- Aktueller Bestand: 52 Bilddateien in `S1`.
+- Gerenderte HTML-Auswahlseite mit 52 Karten, deutscher Überschrift und Druckbutton geprüft.
+- Keine defekten Bildverweise in der gerenderten Auswahlseite festgestellt.
+- Geänderte Textdateien auf gültiges UTF-8 und deutsche Sonderzeichen geprüft.
+
+Vor einer produktiven Nutzung auf einem anderen Rechner bleibt ein kurzer Erstlauf mit Julians tatsächlichem Windows-Benutzerkonto sinnvoll. Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb einen SmartScreen-Hinweis anzeigen.
+
+## 9. Änderungsverlauf
+
+### Version 0.3.0 · 22.11.2026
+
+- automatische, geprüfte Sicherungen mit Aufbewahrung von fünf Ständen ergänzt;
+- Wiederherstellungsdialog und PIN-Schutz für sensible Verwaltungsaktionen ergänzt;
+- atomare Ausgaben für Index, JSON und HTML ergänzt;
+- gebündelten Generator in der veröffentlichten App priorisiert;
+- Build auf zentrale Version, feste Abhängigkeiten, Tests, SHA-256 und Release-Manifest umgestellt;
+- README und Anleitung in das Installationspaket aufgenommen.
+
+### Version 0.2.0 · 22.11.2026
+
+- Spracharchitektur mit Deutsch als Standardsprache ergänzt.
+- Optionalen Sprachwechsel auf Englisch ergänzt.
+- Spracheinstellung dauerhaft gespeichert.
+- Installer-Assistent auf Deutsch festgelegt.
+- Updateablauf und zentrale Bedienungsdokumentation ergänzt.
+
+### Version 0.1.0 · 22.11.2026
+
+- Erste installierbare Windows-Version des Pokémon-Managers.
+- Importprüfung, Duplikaterkennung, S1-Übernahme und S1-Aktualisierung umgesetzt.
+- HTML-Druckseite mit Druckvorschau und Druckbutton angebunden.

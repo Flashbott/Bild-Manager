@@ -1,0 +1,28 @@
+# Benutzer- und Projektdaten
+Eingang/
+S1/
+Backups/
+Protokolle/
+
+# Generierte Ergebnisse und Archive
+Archiv/
+Pokemon-Bilder-Auswahl.html
+Index/
+Hilfsdateien/Archiv/
+Release/
+
+# Lokale Build- und Python-Artefakte
+App/build/
+App/__pycache__/
+App/*.pyc
+Hilfsdateien/__pycache__/
+tests/__pycache__/
+.venv/
+*.log
+
+# Lokale Entwicklungsumgebung
+.idea/
+.vscode/
+
+# Nicht versionierte lokale Konfiguration
+*.local.json
