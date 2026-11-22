@@ -17,7 +17,7 @@ Die Druckseite ist fest vorgegeben:
 ## Schnellablauf
 
 1. Neue Bilddateien im Browser speichern.
-2. Im Pokémon-Manager **Dateien hinzufügen …** wählen und die Bilder prüfen.
+2. Im Pokémon-Manager **Bilder auswählen …** wählen und die Bilder prüfen.
 3. **Bilder übernehmen** und danach **Druckauswahl aktualisieren** wählen.
 4. **Auswahlseite öffnen** wählen.
 5. Bei den gewünschten Pokémon den Haken setzen.

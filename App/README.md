@@ -7,7 +7,8 @@ Die vollständige, langfristige Projekt- und Bedienungsdokumentation steht in:
 Die App steuert Julians lokalen Pokémon-Arbeitsablauf:
 
 1. Bilddateien werden wie gewohnt im Browser gesucht und gespeichert.
-2. Über **Dateien hinzufügen …** werden mehrere Dateien ausgewählt.
+2. Über **Bilder auswählen …** werden mehrere Dateien ausgewählt.
+   Der Dialog startet standardmäßig im Downloads-Ordner. Die Auswahl wird zunächst geprüft; erst **Bilder übernehmen** kopiert gültige neue Bilder in den Arbeitsbestand. Originale werden nicht verschoben oder gelöscht.
 3. Die App prüft Format, Lesbarkeit, Hash und mögliche Dubletten.
 4. Nach Bestätigung werden neue Dateien in den **Arbeitsbestand** kopiert.
 5. **Druckauswahl aktualisieren** erzeugt Index und HTML-Auswahlseite.

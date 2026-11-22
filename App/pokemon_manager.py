@@ -87,7 +87,8 @@ TRANSLATIONS = {
         "size_heading": "Größe",
         "format_heading": "Format",
         "target_heading": "Ziel",
-        "add_files": "Dateien hinzufügen …",
+        "add_files": "Bilder auswählen …",
+        "add_files_help": "Öffnet die Dateiauswahl, standardmäßig im Downloads-Ordner. Wähle ein oder mehrere Bilder aus. Sie werden zuerst geprüft; erst über „Bilder übernehmen“ in den Arbeitsbestand kopiert. Die Originale bleiben erhalten.",
         "remove": "Aus Liste entfernen",
         "clear": "Importliste leeren",
         "copy_s1": "Bilder übernehmen",
@@ -207,7 +208,8 @@ TRANSLATIONS = {
         "size_heading": "Size",
         "format_heading": "Format",
         "target_heading": "Target",
-        "add_files": "Add files …",
+        "add_files": "Choose images …",
+        "add_files_help": "Opens the file picker, starting in Downloads when available. Choose one or more images. They are checked first and copied to the working collection only after “Add images”. The originals remain unchanged.",
         "remove": "Remove from list",
         "clear": "Clear import list",
         "copy_s1": "Add images",
@@ -737,8 +739,19 @@ class PokemonManagerApp(tk.Tk):
             side="left", padx=(6, 0)
         )
         self.log_button.pack_forget()
+        self.add_files_help_var = tk.StringVar()
+        self.add_files_help_label = ttk.Label(
+            root,
+            textvariable=self.add_files_help_var,
+            style="Subtitle.TLabel",
+            wraplength=900,
+            justify="left",
+        )
+        self.add_files_help_label.grid(
+            row=5, column=0, columnspan=2, sticky="ew", pady=(8, 0)
+        )
         self.management_frame = ttk.LabelFrame(root, padding=(10, 6))
-        self.management_frame.grid(row=5, column=0, columnspan=2, sticky="ew", pady=(10, 0))
+        self.management_frame.grid(row=6, column=0, columnspan=2, sticky="ew", pady=(10, 0))
         self.management_frame.grid_remove()
         self.management_frame.columnconfigure(1, weight=1)
         self.management_label = ttk.Label(self.management_frame, style="Subtitle.TLabel")
@@ -762,11 +775,11 @@ class PokemonManagerApp(tk.Tk):
         )
         self.manual_button.pack(side="left", padx=(4, 0))
         self.progress = ttk.Progressbar(root, mode="indeterminate", length=240)
-        self.progress.grid(row=6, column=0, columnspan=2, sticky="ew", pady=(8, 0))
+        self.progress.grid(row=7, column=0, columnspan=2, sticky="ew", pady=(8, 0))
         self.progress.grid_remove()
         self.status_var = tk.StringVar(value=self.t("ready_sentence"))
         ttk.Label(root, textvariable=self.status_var, style="Subtitle.TLabel").grid(
-            row=7, column=0, columnspan=2, sticky="w", pady=(6, 0)
+            row=8, column=0, columnspan=2, sticky="w", pady=(6, 0)
         )
 
     def status_text(self, status: str) -> str:
@@ -800,6 +813,7 @@ class PokemonManagerApp(tk.Tk):
         for column, key in self.tree_heading_keys.items():
             self.tree.heading(column, text=self.t(key))
         self.add_files_button.configure(text=self.t("add_files"))
+        self.add_files_help_var.set(self.t("add_files_help"))
         self.remove_button.configure(text=self.t("remove"))
         self.clear_button.configure(text=self.t("clear"))
         self.copy_button.configure(text=self.t("copy_s1"))

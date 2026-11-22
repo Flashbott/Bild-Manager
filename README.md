@@ -59,7 +59,7 @@ Die Druck- und Auswahlseite bleibt für den schulischen Ablauf deutsch.
 
 1. Bild im Browser speichern, zum Beispiel im Ordner `Downloads`.
 2. Pokémon-Manager öffnen.
-3. **Dateien hinzufügen …** anklicken.
+3. **Bilder auswählen …** anklicken.
 4. Eine oder mehrere Bilddateien auswählen.
 5. In der Importprüfung die Vorschau und den Status kontrollieren.
 6. Nur gültige Dateien mit Status **Bereit** werden über **Bilder übernehmen** kopiert.
