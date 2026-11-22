@@ -94,9 +94,10 @@ $hash = (Get-FileHash -LiteralPath $setup -Algorithm SHA256).Hash.ToLowerInvaria
 $hashFile = Join-Path $releaseRoot "Pokemon-Manager-Setup.exe.sha256"
 Set-Content -LiteralPath $hashFile -Value ("$hash  Pokemon-Manager-Setup.exe") -Encoding UTF8
 $releaseDocs = Join-Path $releaseRoot "Anleitung"
-New-Item -ItemType Directory -Force -Path $releaseDocs | Out-Null
+New-Item -ItemType Directory -Force -Path $releaseDocs, (Join-Path $releaseDocs "Projekt") | Out-Null
 Copy-Item -LiteralPath (Join-Path $projectRoot "README.md") -Destination (Join-Path $releaseDocs "README.md") -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot "Gebrauchsanweisung_Pokemon-Auswahl.html") -Destination (Join-Path $releaseDocs "Gebrauchsanweisung_Pokemon-Auswahl.html") -Force
+Get-ChildItem -LiteralPath (Join-Path $projectRoot "docs") -File -Filter "*.md" | Copy-Item -Destination (Join-Path $releaseDocs "Projekt") -Force
 
 $manifest = [ordered]@{
     product = "Pokemon-Manager"
@@ -110,6 +111,9 @@ $manifest = [ordered]@{
     signing = "not-signed"
     documentation = @(
         (Join-Path $releaseRoot "Anleitung\README.md"),
+        (Join-Path $releaseRoot "Anleitung\Projekt\PROJEKTDOKUMENTATION.md"),
+        (Join-Path $releaseRoot "Anleitung\Projekt\ENTWICKLUNGSFAHRPLAN.md"),
+        (Join-Path $releaseRoot "Anleitung\Projekt\RELEASE-CHECKLIST.md"),
         (Join-Path $releaseRoot "RELEASE_NOTES_$version.md")
     )
 }

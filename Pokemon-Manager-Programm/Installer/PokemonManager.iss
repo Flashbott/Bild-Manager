@@ -30,12 +30,14 @@ Source: "..\Release\dist\Pokemon-Manager\*"; DestDir: "{app}"; Flags: ignorevers
 Source: "..\README.md"; DestDir: "{app}\Anleitung"; DestName: "README.md"; Flags: ignoreversion
 Source: "..\Gebrauchsanweisung_Pokemon-Auswahl.html"; DestDir: "{app}\Anleitung"; Flags: ignoreversion
 Source: "..\Gebrauchsanweisung_Pokemon-Auswahl.md"; DestDir: "{app}\Anleitung"; Flags: ignoreversion
+Source: "..\docs\*"; DestDir: "{app}\Anleitung\Projekt"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\VERSION.json"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\Pokemon-Manager.exe"
 Name: "{autoprograms}\{#MyAppName}\Anleitung"; Filename: "{app}\Anleitung\Gebrauchsanweisung_Pokemon-Auswahl.html"
 Name: "{autoprograms}\{#MyAppName}\README"; Filename: "{app}\Anleitung\README.md"
+Name: "{autoprograms}\{#MyAppName}\Projektdokumentation"; Filename: "{app}\Anleitung\Projekt\PROJEKTDOKUMENTATION.md"
 
 [Run]
 Filename: "{app}\Pokemon-Manager.exe"; Description: "{cm:LaunchProgram,{#MyAppName}}"; Flags: postinstall nowait skipifsilent

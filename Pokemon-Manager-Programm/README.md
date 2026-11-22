@@ -5,6 +5,12 @@ Aktuelle Programmversion: 0.3.1
 
 Diese README ist die zentrale Nachschlagequelle für den Pokémon-Manager und den dazugehörigen Druckablauf. Sie beschreibt sowohl die Bedienung für Julian als auch die spätere Pflege und Aktualisierung durch den Entwickler.
 
+Weiterführende Projektunterlagen liegen im Ordner `docs`:
+
+- `docs\PROJEKTDOKUMENTATION.md` – Architektur, Datenablage, Sicherheits- und Testnachweise;
+- `docs\ENTWICKLUNGSFAHRPLAN.md` – priorisierter Fahrplan und Bauplan für weitere Versionen;
+- `docs\RELEASE-CHECKLIST.md` – wiederholbare Prüfung vor jeder Weitergabe.
+
 ## 1. Zweck
 
 Der Pokémon-Manager unterstützt Julians lokalen Arbeitsablauf:
@@ -206,8 +212,8 @@ Stand 22.11.2026:
 - Die gepackte Windows-Anwendung startet sichtbar mit deutscher Oberfläche, Version `0.3.1`, freier Erststart-Ordnerauswahl, Sicherungs- und Administrationsbereich.
 - Der aktuelle Projektbestand enthält 52 Bilddateien in `S1`.
 - Die vorhandene HTML-Auswahlseite enthält weiterhin den unteren Button **Druckauftrag starten**.
-- Der lokale Git-Stand wird nach der Abschlussprüfung als neuer Commit auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
-- Die neue PyInstaller-Ausgabe liegt unter `Pokemon-Manager-Programm\Release\dist\Pokemon-Manager`.
+- Der lokale Git-Stand ist als Commit `b66efac` auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
+- Der temporäre PyInstaller-Ordner `Release\dist` wird nur während des Builds erzeugt und nach der Prüfung entfernt.
 
 Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb einen SmartScreen-Hinweis anzeigen. Ein Erstlauf mit Julians tatsächlichem Windows-Benutzerkonto und Drucker bleibt zusätzlich sinnvoll.
 
