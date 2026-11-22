@@ -22,7 +22,7 @@ Nach der Installation fragt die App beim ersten Start nach dem Arbeitsordner. Do
 
 ## Repository-Struktur
 
-`Pokemon-Manager-Programm` enthält ausschließlich Quellcode, Tests, technische Hilfsdateien, Installationsdefinitionen, Dokumentation und die erzeugte Setup-Datei. Die lokalen Bild- und Arbeitsdaten liegen getrennt im Projektordner und gehören nicht in ein öffentliches GitHub-Repository.
+`Pokemon-Manager-Programm` enthält Quellcode, Tests, technische Hilfsdateien, Installationsdefinitionen und Dokumentation. Die lokale `Release`-Ablage enthält zusätzlich die erzeugte Setup-Datei; Build- und Release-Artefakte werden nicht automatisch versioniert. Die lokalen Bild- und Arbeitsdaten liegen getrennt im Projektordner und gehören nicht in ein öffentliches GitHub-Repository.
 
 Der wichtigste Entwicklungsordner ist:
 
@@ -42,4 +42,4 @@ Aktueller Nachweis: 8 automatisierte Tests erfolgreich, Installer-Version 0.3.1,
 
 ## GitHub-Hinweis
 
-Der lokale Projektstand ist dokumentiert und in mehreren nachvollziehbaren Commits auf `main` gesichert. Für dieses lokale Repository ist aktuell kein GitHub-Remote hinterlegt. Vor einer Veröffentlichung müssen Repository-URL, Sichtbarkeit und der Ausschluss der Bild- und Benutzerdaten ausdrücklich festgelegt werden.
+Der dokumentierte Projektstand ist in mehreren nachvollziehbaren Commits auf `main` gesichert und im öffentlichen Repository [Flashbott/Bild-Manager](https://github.com/Flashbott/Bild-Manager) veröffentlicht. Bilddaten, Backups, lokale Konfigurationen und Build-Artefakte bleiben ausgeschlossen.

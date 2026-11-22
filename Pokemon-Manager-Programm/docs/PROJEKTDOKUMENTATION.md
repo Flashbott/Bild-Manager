@@ -143,7 +143,7 @@ Offen bzw. nicht Bestandteil des lokalen Abschlusses:
 
 - Erstinstallation auf Julians tatsächlichem Rechner und Drucker;
 - Authenticode-Signatur;
-- Einrichtung und Push eines konkreten GitHub-Remotes;
+- Pflege des GitHub-Repositorys und Veröffentlichung weiterer Releases;
 - Entscheidung über eine rechtssichere Internet-Download-Funktion.
 
 ## 10. Änderungsnachweis

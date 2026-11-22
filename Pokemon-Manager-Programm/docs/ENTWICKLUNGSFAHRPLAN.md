@@ -85,7 +85,7 @@ Eine Version gilt erst dann als fertig, wenn alle Punkte erfüllt sind:
 
 ### GitHub
 
-Aktuell ist kein Remote hinterlegt. Vor einem Push sind Repository-URL, Eigentümer, Sichtbarkeit, Standardbranch und Schutz lokaler Daten festzulegen.
+Das öffentliche Repository [Flashbott/Bild-Manager](https://github.com/Flashbott/Bild-Manager) ist eingerichtet. Der aktuelle Stand liegt auf `main`. Vor jedem weiteren Push bleiben die Prüfung des Git-Status und der Ausschluss von Bilddaten, Backups, lokalen Konfigurationen und Build-Artefakten verpflichtend.
 
 ### Code-Signatur
 
@@ -103,4 +103,4 @@ Der aktuelle Weg ist ein manuelles Setup mit gleicher AppId. Ein Online-Update-C
 
 1. **PM-TEST-01:** Erstlauf des aktuellen Installers auf einem sauberen Benutzerkonto durchführen.
 2. **PM-UX-01:** Die erste Oberfläche mit dem Kind testen und nur die drei wirklich benötigten Aktionen sichtbar machen.
-3. **PM-REL-02:** Entscheiden, ob und in welchem GitHub-Repository der dokumentierte Stand veröffentlicht werden soll.
+3. **PM-REL-02:** GitHub-Repository weiter pflegen und für künftige Releases eine nachvollziehbare Release-Ablage einrichten.
