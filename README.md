@@ -198,16 +198,17 @@ Die Version ist noch nicht code-signiert. Die SHA-256-Prüfsumme dokumentiert di
 
 Stand 22.11.2026:
 
-- Setup-Version `0.2.0` erfolgreich gebaut.
-- App startet als gepackte Windows-Anwendung.
-- Deutsch als Standard und Wechsel Deutsch/Englisch mit Speicherung geprüft.
-- Importprüfung für gültige Datei, Duplikat und ungültige Datei geprüft.
-- Aktueller Bestand: 52 Bilddateien in `S1`.
-- Gerenderte HTML-Auswahlseite mit 52 Karten, deutscher Überschrift und Druckbutton geprüft.
-- Keine defekten Bildverweise in der gerenderten Auswahlseite festgestellt.
-- Geänderte Textdateien auf gültiges UTF-8 und deutsche Sonderzeichen geprüft.
+- `VERSION.json` steht auf `0.3.0`; der Quelltext ist syntaxgeprüft.
+- Sieben automatisierte Tests laufen erfolgreich: Sicherung/Wiederherstellung, Aufbewahrung von fünf Ständen, PIN, Konfiguration, Generator/Druckbutton und UTF-8.
+- Die gepackte Windows-Anwendung startet sichtbar mit deutscher Oberfläche, Version `0.3.0`, Sicherungs- und Administrationsbereich.
+- Der aktuelle Projektbestand enthält 52 Bilddateien in `S1`.
+- Die vorhandene HTML-Auswahlseite enthält weiterhin den unteren Button **Druckauftrag starten**.
+- Der lokale Git-Stand ist als Commit `8aba097` auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
+- Die neue PyInstaller-Ausgabe liegt unter `Release\dist\Pokemon-Manager`.
 
-Vor einer produktiven Nutzung auf einem anderen Rechner bleibt ein kurzer Erstlauf mit Julians tatsächlichem Windows-Benutzerkonto sinnvoll. Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb einen SmartScreen-Hinweis anzeigen.
+**Offen / nicht nachgewiesen:** Auf diesem Build-Rechner fehlt aktuell der Inno-Setup-Compiler. Deshalb wurde noch keine neue `Release\Pokemon-Manager-Setup.exe` für Version `0.3.0` erzeugt; die dort vorhandene Setup-Datei ist der ältere Stand `0.2.0` und darf nicht als neue Version weitergegeben werden. Nach Installation des freigegebenen Build-Werkzeugs muss der Build erneut laufen, danach sind Setup, SHA-256, Manifest und Updateinstallation als End-to-End-Schritt zu prüfen.
+
+Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb einen SmartScreen-Hinweis anzeigen. Ein Erstlauf mit Julians tatsächlichem Windows-Benutzerkonto und Drucker bleibt zusätzlich sinnvoll.
 
 ## 9. Änderungsverlauf
 
