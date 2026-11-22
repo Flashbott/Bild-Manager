@@ -212,7 +212,7 @@ Stand 22.11.2026:
 - Die gepackte Windows-Anwendung startet sichtbar mit deutscher Oberfläche, Version `0.3.1`, freier Erststart-Ordnerauswahl, Sicherungs- und Administrationsbereich.
 - Der aktuelle Projektbestand enthält 52 Bilddateien in `S1`.
 - Die vorhandene HTML-Auswahlseite enthält weiterhin den unteren Button **Druckauftrag starten**.
-- Der lokale Git-Stand ist als Commit `b66efac` auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
+- Der lokale Git-Stand ist als Commit `8e2f09b` auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
 - Der temporäre PyInstaller-Ordner `Release\dist` wird nur während des Builds erzeugt und nach der Prüfung entfernt.
 
 Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb einen SmartScreen-Hinweis anzeigen. Ein Erstlauf mit Julians tatsächlichem Windows-Benutzerkonto und Drucker bleibt zusätzlich sinnvoll.
