@@ -42,4 +42,4 @@ Aktueller Nachweis: 8 automatisierte Tests erfolgreich, Installer-Version 0.3.1,
 
 ## GitHub-Hinweis
 
-Der lokale Projektstand ist dokumentiert und als Commit `8e2f09b` auf `main` gesichert. Für dieses lokale Repository ist aktuell kein GitHub-Remote hinterlegt. Vor einer Veröffentlichung müssen Repository-URL, Sichtbarkeit und der Ausschluss der Bild- und Benutzerdaten ausdrücklich festgelegt werden.
+Der lokale Projektstand ist dokumentiert und in mehreren nachvollziehbaren Commits auf `main` gesichert. Für dieses lokale Repository ist aktuell kein GitHub-Remote hinterlegt. Vor einer Veröffentlichung müssen Repository-URL, Sichtbarkeit und der Ausschluss der Bild- und Benutzerdaten ausdrücklich festgelegt werden.
