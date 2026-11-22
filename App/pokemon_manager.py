@@ -71,7 +71,7 @@ APP_VERSION = application_version()
 TRANSLATIONS = {
     "de": {
         "window_title": "Pokémon-Manager",
-        "subtitle": "Bilder prüfen, in den Arbeitsbestand übernehmen und die Druckauswahl aktualisieren.",
+        "subtitle": "So geht es:\n1. Bilder auswählen – Downloads öffnen, Bilder markieren und „Öffnen“ klicken. Die App übernimmt die Bilder automatisch.\n2. Druckauswahl aktualisieren – die neue Liste wird erstellt.\n3. Auswahlseite öffnen – dort gewünschte Bilder anklicken.",
         "language": "Sprache:",
         "data_storage": "Arbeitsordner",
         "project_folder": "Arbeitsordner auswählen",
@@ -88,7 +88,6 @@ TRANSLATIONS = {
         "format_heading": "Format",
         "target_heading": "Ziel",
         "add_files": "Bilder auswählen …",
-        "add_files_help": "Öffnet die Dateiauswahl, standardmäßig im Downloads-Ordner. Wähle ein oder mehrere Bilder aus. Nach dem Bestätigen werden gültige neue Bilder automatisch geprüft und in den Arbeitsbestand kopiert. Die Originale bleiben erhalten.",
         "remove": "Aus Liste entfernen",
         "clear": "Importliste leeren",
         "copy_s1": "Automatische Übernahme",
@@ -192,7 +191,7 @@ TRANSLATIONS = {
     },
     "en": {
         "window_title": "Pokémon Manager",
-        "subtitle": "Check images, add them to the working collection and update the print selection.",
+        "subtitle": "How it works:\n1. Choose images – open Downloads, select images and click “Open”. The app adds the images automatically.\n2. Update print selection – the new list is created.\n3. Open selection page – click the images you want.",
         "language": "Language:",
         "data_storage": "Working folder",
         "project_folder": "Choose working folder",
@@ -209,7 +208,6 @@ TRANSLATIONS = {
         "format_heading": "Format",
         "target_heading": "Target",
         "add_files": "Choose images …",
-        "add_files_help": "Opens the file picker, starting in Downloads when available. Choose one or more images. After confirmation, valid new images are checked and copied to the working collection automatically. The originals remain unchanged.",
         "remove": "Remove from list",
         "clear": "Clear import list",
         "copy_s1": "Automatic import",
@@ -613,7 +611,9 @@ class PokemonManagerApp(tk.Tk):
         self.language_combo.pack(side="left")
         self.language_combo.bind("<<ComboboxSelected>>", self.on_language_change)
 
-        self.subtitle_label = ttk.Label(root, style="Subtitle.TLabel")
+        self.subtitle_label = ttk.Label(
+            root, style="Subtitle.TLabel", justify="left", wraplength=900
+        )
         self.subtitle_label.grid(row=1, column=0, columnspan=2, sticky="w", pady=(2, 14))
 
         self.path_frame = ttk.LabelFrame(root, padding=10)
@@ -740,19 +740,8 @@ class PokemonManagerApp(tk.Tk):
             side="left", padx=(6, 0)
         )
         self.log_button.pack_forget()
-        self.add_files_help_var = tk.StringVar()
-        self.add_files_help_label = ttk.Label(
-            root,
-            textvariable=self.add_files_help_var,
-            style="Subtitle.TLabel",
-            wraplength=900,
-            justify="left",
-        )
-        self.add_files_help_label.grid(
-            row=5, column=0, columnspan=2, sticky="ew", pady=(8, 0)
-        )
         self.management_frame = ttk.LabelFrame(root, padding=(10, 6))
-        self.management_frame.grid(row=6, column=0, columnspan=2, sticky="ew", pady=(10, 0))
+        self.management_frame.grid(row=5, column=0, columnspan=2, sticky="ew", pady=(10, 0))
         self.management_frame.grid_remove()
         self.management_frame.columnconfigure(1, weight=1)
         self.management_label = ttk.Label(self.management_frame, style="Subtitle.TLabel")
@@ -776,11 +765,11 @@ class PokemonManagerApp(tk.Tk):
         )
         self.manual_button.pack(side="left", padx=(4, 0))
         self.progress = ttk.Progressbar(root, mode="indeterminate", length=240)
-        self.progress.grid(row=7, column=0, columnspan=2, sticky="ew", pady=(8, 0))
+        self.progress.grid(row=6, column=0, columnspan=2, sticky="ew", pady=(8, 0))
         self.progress.grid_remove()
         self.status_var = tk.StringVar(value=self.t("ready_sentence"))
         ttk.Label(root, textvariable=self.status_var, style="Subtitle.TLabel").grid(
-            row=8, column=0, columnspan=2, sticky="w", pady=(6, 0)
+            row=7, column=0, columnspan=2, sticky="w", pady=(6, 0)
         )
 
     def status_text(self, status: str) -> str:
@@ -814,7 +803,6 @@ class PokemonManagerApp(tk.Tk):
         for column, key in self.tree_heading_keys.items():
             self.tree.heading(column, text=self.t(key))
         self.add_files_button.configure(text=self.t("add_files"))
-        self.add_files_help_var.set(self.t("add_files_help"))
         self.remove_button.configure(text=self.t("remove"))
         self.clear_button.configure(text=self.t("clear"))
         self.copy_button.configure(text=self.t("copy_s1"))

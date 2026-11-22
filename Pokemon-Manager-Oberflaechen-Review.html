@@ -137,7 +137,10 @@ main { padding: 28px 0 70px; }
 .progress-row { margin-top: 10px; }
 .progress-row progress { width: 100%; height: 8px; accent-color: var(--blue); }
 .status-line { margin: 8px 0 0; color: var(--muted); font-size: 11px; }
-.import-help { margin-top: 9px; padding: 9px 11px; border-left: 3px solid #8da9d9; border-radius: 6px; background: #f7faff; color: #526176; font-size: 11px; }
+.quick-guide { margin-top: 12px; padding: 10px 13px; border: 1px solid #c7d9f7; border-left: 4px solid var(--blue); border-radius: 8px; background: #f7faff; color: #334155; font-size: 12px; }
+.quick-guide-title { margin-bottom: 4px; color: var(--blue-dark); font-weight: 850; }
+.quick-guide ol { margin: 0; padding-left: 22px; }
+.quick-guide li { margin: 3px 0; }
 .settings-hint { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 11px; border: 1px dashed #b8c7df; border-radius: 8px; background: #f7faff; color: #526176; font-size: 11px; }
 .settings-hint strong { color: var(--blue-dark); font-size: 17px; }
 .dialog-stage { position: relative; min-height: 315px; padding: 24px; border-radius: 9px; background: linear-gradient(135deg, #e2e6ed, #cfd6e1); }
@@ -240,15 +243,23 @@ main { padding: 28px 0 70px; }
       <span class="surface-number">1</span>
       <div>
         <h2>Hauptfenster – täglicher Arbeitsablauf</h2>
-        <p>Die zentrale Oberfläche für Bildprüfung, Übernahme in den Arbeitsbestand, Aktualisierung der Druckauswahl und Öffnen der Druckseite. Deutsch ist als Standardsprache sichtbar ausgewählt.</p>
+        <p>Hier sieht man den Ablauf für Julian: Bilder auswählen, Druckauswahl aktualisieren, Auswahlseite öffnen und Bilder anklicken.</p>
       </div>
     </div>
     <div class="window wide">
       <div class="titlebar"><span>Pokémon-Manager</span><span class="window-controls"><i></i><i></i><i></i></span></div>
       <div class="window-body">
         <div class="app-top">
-          <div><h3>Pokémon-Manager</h3><p>Bilder prüfen, in den Arbeitsbestand übernehmen und die Druckauswahl aktualisieren.</p></div>
+          <div><h3>Pokémon-Manager</h3><p>Kurze Klick-Anleitung</p></div>
           <div class="language-box"><button class="gear-button" title="Einstellungen und Verwaltung">⚙</button><span>Sprache:</span><select aria-label="Sprache"><option selected>Deutsch</option><option>English</option></select></div>
+        </div>
+        <div class="quick-guide">
+          <div class="quick-guide-title">So geht es:</div>
+          <ol>
+            <li><strong>Bilder auswählen:</strong> Downloads öffnen. Bilder markieren. „Öffnen“ klicken. Die App übernimmt die Bilder automatisch.</li>
+            <li><strong>Druckauswahl aktualisieren:</strong> Die neue Liste wird erstellt.</li>
+            <li><strong>Auswahlseite öffnen:</strong> Dort gewünschte Bilder anklicken.</li>
+          </ol>
         </div>
         <div class="group-box">
           <div class="group-title">Arbeitsordner</div>
@@ -277,7 +288,6 @@ main { padding: 28px 0 70px; }
           <div class="button-group"><button class="secondary-button">Bilder auswählen …</button><button class="secondary-button">Aus Liste entfernen</button><button class="secondary-button">Importliste leeren</button></div>
           <div class="button-group"><button class="primary-button">Druckauswahl aktualisieren</button><button class="secondary-button">Auswahlseite öffnen</button></div>
         </div>
-        <div class="import-help"><strong>Was passiert bei „Bilder auswählen …“?</strong> Der Dateiauswahldialog startet standardmäßig im Downloads-Ordner. Du kannst ein oder mehrere Bilder markieren. Nach dem Bestätigen werden gültige neue Bilder automatisch geprüft und in den Arbeitsbestand kopiert; die Originale bleiben erhalten. Du musst keine zusätzliche Übernahmeschaltfläche anklicken.</div>
         <div class="settings-hint"><strong>⚙</strong><span><b>Einstellungen und Verwaltung</b> sind über das Zahnrad oben rechts erreichbar: Arbeitsordner, Protokoll, Sicherungen, Administration und Anleitung.</span></div>
         <div class="status-line">Bereit.</div>
       </div>
