@@ -90,6 +90,7 @@ main { padding: 28px 0 70px; }
 .app-top p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
 .language-box { display: flex; align-items: center; gap: 7px; color: var(--ink); font-size: 12px; }
 .language-box select { min-width: 96px; padding: 5px 8px; border: 1px solid #b6c1d1; border-radius: 5px; background: white; }
+.gear-button { width: 34px; height: 32px; border: 1px solid #b6c1d1; border-radius: 7px; background: white; color: var(--ink); font-size: 18px; font-weight: 800; }
 .group-box { margin-top: 14px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fafbfd; }
 .group-title { margin: -22px 0 9px; padding: 0 6px; width: max-content; background: #fafbfd; color: #334155; font-size: 12px; font-weight: 800; }
 .data-line { display: grid; grid-template-columns: auto 1fr auto auto; gap: 9px; align-items: center; font-size: 12px; }
@@ -136,6 +137,8 @@ main { padding: 28px 0 70px; }
 .progress-row { margin-top: 10px; }
 .progress-row progress { width: 100%; height: 8px; accent-color: var(--blue); }
 .status-line { margin: 8px 0 0; color: var(--muted); font-size: 11px; }
+.settings-hint { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 11px; border: 1px dashed #b8c7df; border-radius: 8px; background: #f7faff; color: #526176; font-size: 11px; }
+.settings-hint strong { color: var(--blue-dark); font-size: 17px; }
 .dialog-stage { position: relative; min-height: 315px; padding: 24px; border-radius: 9px; background: linear-gradient(135deg, #e2e6ed, #cfd6e1); }
 .dialog-stage::before { content: "Pokémon-Manager"; position: absolute; inset: 18px; padding: 12px; color: #6c788a; font-size: 19px; font-weight: 900; opacity: .55; }
 .backdrop { position: absolute; inset: 0; border-radius: 9px; background: rgba(23, 32, 51, .26); }
@@ -217,8 +220,8 @@ main { padding: 28px 0 70px; }
   <nav class="toc" aria-label="Oberflächen-Navigation">
     <a href="#hauptfenster">1 · Hauptfenster</a>
     <a href="#erststart">2 · Erststart</a>
-    <a href="#pin">3 · PIN</a>
-    <a href="#verwaltung">4 · Administration</a>
+    <a href="#pin">3 · PIN/Passwort</a>
+    <a href="#verwaltung">4 · Zahnrad & Verwaltung</a>
     <a href="#sicherung">5 · Sicherung</a>
     <a href="#status">6 · Statusmeldungen</a>
     <a href="#auswahlseite">7 · Auswahl & Druck</a>
@@ -236,20 +239,20 @@ main { padding: 28px 0 70px; }
       <span class="surface-number">1</span>
       <div>
         <h2>Hauptfenster – täglicher Arbeitsablauf</h2>
-        <p>Die zentrale Oberfläche für Bildprüfung, Übernahme nach S1, S1-Aktualisierung und Öffnen der Druckauswahl. Deutsch ist als Standardsprache sichtbar ausgewählt.</p>
+        <p>Die zentrale Oberfläche für Bildprüfung, Übernahme in den Arbeitsbestand, Aktualisierung der Druckauswahl und Öffnen der Druckseite. Deutsch ist als Standardsprache sichtbar ausgewählt.</p>
       </div>
     </div>
     <div class="window wide">
       <div class="titlebar"><span>Pokémon-Manager</span><span class="window-controls"><i></i><i></i><i></i></span></div>
       <div class="window-body">
         <div class="app-top">
-          <div><h3>Pokémon-Manager</h3><p>Bilder prüfen, nach S1 übernehmen und die Druckauswahl aktualisieren.</p></div>
-          <div class="language-box"><span>Sprache:</span><select aria-label="Sprache"><option selected>Deutsch</option><option>English</option></select></div>
+          <div><h3>Pokémon-Manager</h3><p>Bilder prüfen, in den Arbeitsbestand übernehmen und die Druckauswahl aktualisieren.</p></div>
+          <div class="language-box"><button class="gear-button" title="Einstellungen und Verwaltung">⚙</button><span>Sprache:</span><select aria-label="Sprache"><option selected>Deutsch</option><option>English</option></select></div>
         </div>
         <div class="group-box">
-          <div class="group-title">Datenablage</div>
-          <div class="data-line"><strong>Projektordner:</strong><span class="path-value">C:\Codex\Julian\Pokémon</span><button class="mini-button">Ändern …</button><button class="mini-button">Eingangsordner öffnen</button></div>
-          <p class="info-line">Bilddateien in S1: 52 · Konfiguration: C:\Users\mpuet\AppData\Roaming\PokemonManager\config.json</p>
+          <div class="group-title">Arbeitsordner</div>
+          <div class="data-line"><strong>Arbeitsordner:</strong><span class="path-value">C:\Codex\Julian\Pokémon</span></div>
+          <p class="info-line">52 Bilddateien im Arbeitsbestand · Einstellungen werden automatisch gespeichert.</p>
         </div>
         <div class="main-work">
           <div class="panel">
@@ -271,12 +274,9 @@ main { padding: 28px 0 70px; }
         </div>
         <div class="controls-row">
           <div class="button-group"><button class="secondary-button">Dateien hinzufügen …</button><button class="secondary-button">Aus Liste entfernen</button><button class="secondary-button">Importliste leeren</button></div>
-          <div class="button-group"><button class="primary-button">Nach S1 übernehmen</button><button class="primary-button">S1 aktualisieren</button><button class="secondary-button">Auswahlseite öffnen</button><button class="secondary-button">Protokoll öffnen</button></div>
+          <div class="button-group"><button class="primary-button">Bilder übernehmen</button><button class="primary-button">Druckauswahl aktualisieren</button><button class="secondary-button">Auswahlseite öffnen</button></div>
         </div>
-        <div class="management">
-          <span class="management-title">Sicherung und Verwaltung</span>
-          <div class="button-group"><span class="version">Version 0.3.0</span><button class="secondary-button">Sicherung erstellen</button><button class="secondary-button">Wiederherstellen …</button><button class="secondary-button">Administration …</button><button class="secondary-button">Anleitung öffnen</button></div>
-        </div>
+        <div class="settings-hint"><strong>⚙</strong><span><b>Einstellungen und Verwaltung</b> sind über das Zahnrad oben rechts erreichbar: Arbeitsordner, Protokoll, Sicherungen, Administration und Anleitung.</span></div>
         <div class="status-line">Bereit.</div>
       </div>
     </div>
@@ -287,22 +287,22 @@ main { padding: 28px 0 70px; }
       <span class="surface-number">2</span>
       <div>
         <h2>Erststart und Datenablage</h2>
-        <p>Diese Dialoge erscheinen nur beim ersten Einrichten oder wenn der Projektordner bewusst gewechselt werden soll.</p>
+        <p>Diese Dialoge erscheinen nur beim ersten Einrichten oder wenn der Arbeitsordner bewusst gewechselt werden soll.</p>
       </div>
     </div>
     <div class="mockup-grid">
       <div class="window">
         <div class="titlebar"><span>Hauptfenster im Hintergrund</span><span class="window-controls"><i></i><i></i><i></i></span></div>
         <div class="dialog-stage"><div class="backdrop"></div><div class="dialog">
-          <div class="dialog-header"><span>Datenablage</span><span class="dialog-close">×</span></div>
-          <div class="dialog-content"><p>Soll dieser Projektordner verwendet werden?</p><p><strong>C:\Codex\Julian\Pokémon</strong></p><p class="hint">Die App legt fehlende Arbeitsordner selbst an.</p></div>
+          <div class="dialog-header"><span>Arbeitsordner festlegen</span><span class="dialog-close">×</span></div>
+          <div class="dialog-content"><p>Soll dieser Arbeitsordner verwendet werden?</p><p><strong>C:\Codex\Julian\Pokémon</strong></p><p class="hint">Hier speichert der Pokémon-Manager deine Bilddateien, die Druckauswahl und automatische Sicherungen. Bestehende Bilder werden nicht gelöscht.</p><p class="hint">Der technische Unterordner heißt intern „S1“. In der Bedienung nennen wir ihn verständlicher „Arbeitsbestand“.</p></div>
           <div class="dialog-actions"><button class="secondary-button">Nein</button><button class="primary-button">Ja</button></div>
         </div></div>
       </div>
       <div class="window">
         <div class="titlebar"><span>Ordnerauswahl</span><span class="window-controls"><i></i><i></i><i></i></span></div>
         <div class="window-body">
-          <div class="panel" style="min-height: 260px"><div class="panel-title">Projektordner auswählen</div><div class="group-box" style="margin-top:25px"><div class="group-title">Ordner</div><p class="info-line" style="margin:0">C:\Codex\Julian\Pokémon</p><p class="info-line">Eingang · S1 · Index · Backups</p></div><div class="controls-row" style="margin-top:100px"><button class="secondary-button">Abbrechen</button><button class="primary-button">Ordner auswählen</button></div></div>
+          <div class="panel" style="min-height: 260px"><div class="panel-title">Arbeitsordner auswählen</div><div class="group-box" style="margin-top:25px"><div class="group-title">Ordner</div><p class="info-line" style="margin:0">C:\Codex\Julian\Pokémon</p><p class="info-line">Eingang · Bildbestand · Index · Backups</p></div><div class="controls-row" style="margin-top:100px"><button class="secondary-button">Abbrechen</button><button class="primary-button">Arbeitsordner auswählen</button></div></div>
         </div>
       </div>
     </div>
@@ -312,8 +312,8 @@ main { padding: 28px 0 70px; }
     <div class="surface-heading">
       <span class="surface-number">3</span>
       <div>
-        <h2>Administrator-PIN</h2>
-        <p>Die normale Bildauswahl bleibt frei nutzbar. Die PIN wird nur für geschützte Verwaltungsaktionen verwendet und nicht im Klartext gespeichert.</p>
+        <h2>PIN/Passwort für die Administration</h2>
+        <p>Die normale Bildauswahl bleibt frei nutzbar. Die vierstellige PIN ist das lokale App-Passwort für geschützte Verwaltungsaktionen und kann später über das Zahnrad geändert werden.</p>
       </div>
     </div>
     <div class="mockup-grid">
@@ -348,8 +348,25 @@ main { padding: 28px 0 70px; }
     <div class="surface-heading">
       <span class="surface-number">4</span>
       <div>
-        <h2>Administration</h2>
-        <p>Übersicht für den Eigentümer: PIN-Status prüfen oder PIN ändern. Weitere sensible Einstellungen können hier später ergänzt werden.</p>
+        <h2>Zahnrad-Menü und Administration</h2>
+        <p>Das Zahnrad oben rechts hält technische und selten benötigte Funktionen aus dem täglichen Arbeitsablauf heraus. Dort liegen Arbeitsordner, Sicherungen, Anleitung, Protokoll und die geschützte Administration.</p>
+      </div>
+    </div>
+    <div class="mockup-grid" style="margin-bottom: 18px">
+      <div class="window">
+        <div class="titlebar"><span>Hauptfenster · Ecke oben rechts</span><span class="window-controls"><i></i><i></i><i></i></span></div>
+        <div class="window-body" style="min-height: 235px">
+          <div class="app-top"><div><h3>Pokémon-Manager</h3><p>Der Alltag bleibt übersichtlich.</p></div><div class="language-box"><button class="gear-button">⚙</button><span>Sprache:</span><select><option>Deutsch</option></select></div></div>
+          <div class="settings-hint" style="margin-top: 80px"><strong>⚙</strong><span>Ein Klick öffnet Einstellungen und Verwaltung.</span></div>
+        </div>
+      </div>
+      <div class="window">
+        <div class="titlebar"><span>Menü nach Klick auf ⚙</span><span class="window-controls"><i></i><i></i><i></i></span></div>
+        <div class="dialog" style="margin: 22px auto; width: calc(100% - 34px)">
+          <div class="dialog-header"><span>Einstellungen und Verwaltung</span><span class="dialog-close">×</span></div>
+          <div class="dialog-content"><p>Hier findest du den Arbeitsordner, Sicherungen und die geschützte Administration.</p><div class="button-group" style="display:grid; grid-template-columns:1fr 1fr"><button class="secondary-button">Arbeitsordner ändern …</button><button class="secondary-button">Eingangsordner öffnen</button><button class="secondary-button">Sicherung erstellen</button><button class="secondary-button">Wiederherstellen …</button><button class="secondary-button">Administration …</button><button class="secondary-button">Anleitung öffnen</button></div></div>
+          <div class="dialog-actions"><button class="secondary-button">Schließen</button></div>
+        </div>
       </div>
     </div>
     <div class="window" style="max-width: 700px; margin: 0 auto">
@@ -357,7 +374,7 @@ main { padding: 28px 0 70px; }
       <div class="dialog" style="margin: 30px auto; width: calc(100% - 40px)">
         <div class="dialog-header"><span>Administration …</span><span class="dialog-close">×</span></div>
         <div class="dialog-content"><p>Status der geschützten Verwaltungsfunktionen:</p><div class="admin-status">✓ Administrator-PIN ist eingerichtet.</div><p class="hint" style="margin-top:12px">Die PIN schützt nur sensible Verwaltungsaktionen. Änderungen werden lokal für dieses Windows-Benutzerkonto gespeichert.</p></div>
-        <div class="dialog-actions"><button class="secondary-button">Schließen</button><button class="primary-button">PIN ändern</button></div>
+        <div class="dialog-actions"><button class="secondary-button">Schließen</button><button class="primary-button">PIN/Passwort ändern</button></div>
       </div>
     </div>
   </section>
@@ -375,10 +392,10 @@ main { padding: 28px 0 70px; }
       <div class="dialog" style="margin: 22px auto; width: calc(100% - 44px)">
         <div class="dialog-header"><span>Sicherung wiederherstellen</span><span class="dialog-close">×</span></div>
         <div class="dialog-content"><p>Wähle eine Sicherung aus. Die aktuelle Datenlage wird vorher automatisch gesichert.</p><div class="restore-table-wrap"><table class="restore-table"><thead><tr><th>Zeitpunkt</th><th>Anlass</th><th>Dateien</th><th>Größe</th></tr></thead><tbody>
-          <tr class="selected"><td>22.11.2026 14:08</td><td>Vor S1-Aktualisierung</td><td>57</td><td>8,4 MB</td></tr>
-          <tr><td>22.11.2026 13:52</td><td>Vor Übernahme nach S1</td><td>55</td><td>8,1 MB</td></tr>
+          <tr class="selected"><td>22.11.2026 14:08</td><td>Vor Aktualisierung der Druckauswahl</td><td>57</td><td>8,4 MB</td></tr>
+          <tr><td>22.11.2026 13:52</td><td>Vor Übernahme in den Arbeitsbestand</td><td>55</td><td>8,1 MB</td></tr>
           <tr><td>22.11.2026 12:30</td><td>Manuelle Sicherung</td><td>53</td><td>7,9 MB</td></tr>
-          <tr><td>21.11.2026 17:20</td><td>Vor S1-Aktualisierung</td><td>52</td><td>7,8 MB</td></tr>
+          <tr><td>21.11.2026 17:20</td><td>Vor Aktualisierung der Druckauswahl</td><td>52</td><td>7,8 MB</td></tr>
           <tr><td>21.11.2026 16:45</td><td>Manuelle Sicherung</td><td>52</td><td>7,8 MB</td></tr>
         </tbody></table></div></div>
         <div class="dialog-actions"><button class="secondary-button">Abbrechen</button><button class="primary-button">Sicherung wiederherstellen</button></div>
@@ -396,7 +413,7 @@ main { padding: 28px 0 70px; }
     </div>
     <div class="window wide">
       <div class="titlebar"><span>Hauptfenster – laufender Vorgang</span><span class="window-controls"><i></i><i></i><i></i></span></div>
-      <div class="window-body"><div class="group-box" style="margin-top:0"><div class="group-title">Sicherung und Verwaltung</div><div class="progress-row"><progress value="64" max="100"></progress></div><p class="status-line"><strong>Vorgang läuft …</strong> Dateien werden geprüft und gesichert. Bedienkacheln sind währenddessen deaktiviert.</p></div></div>
+      <div class="window-body"><div class="group-box" style="margin-top:0"><div class="group-title">Sicherungen und Administration</div><div class="progress-row"><progress value="64" max="100"></progress></div><p class="status-line"><strong>Vorgang läuft …</strong> Dateien werden geprüft und gesichert. Bedienkacheln sind währenddessen deaktiviert.</p></div></div>
     </div>
     <div class="toast-grid" style="margin-top: 14px">
       <article class="toast success"><h3>✓ Sicherung erstellt</h3><p>Sicherung erstellt: 57 Datei(en), 8,4 MB</p></article>
@@ -434,7 +451,7 @@ main { padding: 28px 0 70px; }
       <span class="surface-number">✓</span>
       <div>
         <h2>Änderungsnotizen für die nächste Runde</h2>
-        <p>Diese Review-Datei ist bewusst als sichtbare Gesprächsgrundlage aufgebaut. Änderungswünsche können zum Beispiel so notiert werden: „Oberfläche 1, Kachel Sicherung und Verwaltung: …“</p>
+        <p>Diese Review-Datei ist bewusst als sichtbare Gesprächsgrundlage aufgebaut. Änderungswünsche können zum Beispiel so notiert werden: „Oberfläche 1, Bereich Sicherungen und Administration: …“</p>
       </div>
     </div>
   </section>

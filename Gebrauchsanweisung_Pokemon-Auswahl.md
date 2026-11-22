@@ -4,7 +4,7 @@ Stand: 22.11.2026
 
 ## Zweck
 
-Mit der Auswahlseite können Pokémon-Bilder aus dem Ordner S1 angesehen, einzeln ausgewählt und als Druckbogen ausgegeben werden.
+Mit der Auswahlseite können Pokémon-Bilder aus dem Arbeitsbestand angesehen, einzeln ausgewählt und als Druckbogen ausgegeben werden. Der Arbeitsbestand liegt technisch im Unterordner `S1`.
 
 Die Druckseite ist fest vorgegeben:
 
@@ -18,7 +18,7 @@ Die Druckseite ist fest vorgegeben:
 
 1. Neue Bilddateien im Browser speichern.
 2. Im Pokémon-Manager **Dateien hinzufügen …** wählen und die Bilder prüfen.
-3. **Nach S1 übernehmen** und danach **S1 aktualisieren** wählen.
+3. **Bilder übernehmen** und danach **Druckauswahl aktualisieren** wählen.
 4. **Auswahlseite öffnen** wählen.
 5. Bei den gewünschten Pokémon den Haken setzen.
 6. Die Druckvorschau prüfen.
@@ -53,7 +53,7 @@ Der Filter ändert nur die Anzeige. Bereits gesetzte Haken bleiben erhalten.
 
 ## Neue Bilder ergänzen
 
-Die Bildquelle ist ausschließlich:
+Die technische Bildquelle des Arbeitsbestands ist:
 
     C:\Codex\Julian\Pokémon\S1
 
@@ -65,24 +65,24 @@ Unterstützte Bildformate:
 - BMP
 - WebP
 
-Nach dem Ablegen neuer Bilder muss die Auswahlseite aktualisiert werden. Dafür genügt die Nachricht:
+Nach dem Ablegen neuer Bilder muss die Auswahlseite aktualisiert werden. Dafür genügt die Schaltfläche:
 
-    S1 aktualisieren
+    Druckauswahl aktualisieren
 
 Beim Aktualisieren werden:
 
-1. alle Bilddateien in S1 eingelesen;
+1. alle Bilddateien im Arbeitsbestand (`S1`) eingelesen;
 2. neue Dateien in den Index aufgenommen;
 3. neue Einträge mit Neu markiert;
 4. Umbenennungen über den SHA-256-Bildhash erkannt;
 5. exakte Dubletten als zweite Kachel ausgeblendet;
 6. die Auswahl-HTML neu erzeugt.
 
-Die Originalbilder in S1 werden nicht verschoben, umbenannt oder gelöscht.
+Die Originalbilder im Arbeitsbestand (`S1`) werden nicht verschoben, umbenannt oder gelöscht.
 
 ## Umbenennen von Dateien
 
-Wenn eine Bilddatei umbenannt wird und der Bildinhalt gleich bleibt, erkennt der Generator die Änderung über den SHA-256-Hash. Nach S1 aktualisieren zeigt die HTML auf den neuen Dateinamen.
+Wenn eine Bilddatei umbenannt wird und der Bildinhalt gleich bleibt, erkennt der Generator die Änderung über den SHA-256-Hash. Nach **Druckauswahl aktualisieren** zeigt die HTML auf den neuen Dateinamen.
 
 Beispiel:
 
@@ -108,7 +108,7 @@ Diese Datei wird vom Generator für die technische Verarbeitung erzeugt.
 
     C:\Codex\Julian\Pokémon\Hilfsdateien\pokemon_auswahl_aktualisieren.py
 
-Die HTML sollte nicht von Hand bearbeitet werden. Änderungen an Bildern oder Namen werden über S1 und den Index eingepflegt und danach durch S1 aktualisieren neu erzeugt.
+Die HTML sollte nicht von Hand bearbeitet werden. Änderungen an Bildern oder Namen werden über den Arbeitsbestand (`S1`) und den Index eingepflegt und danach durch **Druckauswahl aktualisieren** neu erzeugt.
 
 ## Drucken
 
@@ -127,9 +127,9 @@ Die letzte Seite bleibt im 2×3-Raster. Nicht belegte Felder bleiben leer.
 
 Prüfen:
 
-1. Liegt die Datei direkt oder in einem Unterordner von S1?
+1. Liegt die Datei direkt oder in einem Unterordner des Arbeitsbestands (`S1`)?
 2. Hat sie eines der unterstützten Formate?
-3. Wurde danach S1 aktualisieren beauftragt?
+3. Wurde danach **Druckauswahl aktualisieren** ausgeführt?
 
 ### Ein Bild fehlt in der HTML
 

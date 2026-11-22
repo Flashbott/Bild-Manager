@@ -123,7 +123,7 @@ Erstellt: $((Get-Date).ToString("yyyy-MM-dd HH:mm:ss zzz"))
 ## Enthalten
 
 - deutschsprachige Oberfläche mit optionaler englischer Auswahl
-- automatische Sicherung vor Übernahme, S1-Aktualisierung und Wiederherstellung
+- automatische Sicherung vor Übernahme, Aktualisierung der Druckauswahl und Wiederherstellung
 - Wiederherstellungsdialog mit fünf geprüften Sicherungsständen
 - Administrator-PIN für geschützte Verwaltungsaktionen
 - atomare Ausgabe von Index, JSON und Druckauswahl

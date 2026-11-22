@@ -38,8 +38,8 @@ def load_generator(project_root: Path) -> ModuleType:
     )
     if generator_path is None:
         raise FileNotFoundError(
-            "Der S1-Aktualisierungsgenerator wurde nicht gefunden. "
-            "Bitte die Anwendung reparieren oder den Projektordner prüfen."
+            "Der Generator für die Druckauswahl wurde nicht gefunden. "
+            "Bitte die Anwendung reparieren oder den Arbeitsordner prüfen."
         )
 
     module_name = "pokemon_generator_runtime"

@@ -12,11 +12,14 @@ Der Pokémon-Manager unterstützt Julians lokalen Arbeitsablauf:
 1. Bilddateien werden wie gewohnt im Browser gesucht und gespeichert.
 2. Mehrere gespeicherte Bilder werden im Manager ausgewählt.
 3. Die App prüft Dateiformat, Lesbarkeit, Bildgröße und mögliche Duplikate.
-4. Nach einer sichtbaren Prüfung und Bestätigung werden neue Bilder nach `S1` kopiert.
-5. **S1 aktualisieren** erzeugt den Index und die HTML-Auswahlseite neu.
+4. Nach einer sichtbaren Prüfung und Bestätigung werden neue Bilder in den **Arbeitsbestand** kopiert.
+5. **Druckauswahl aktualisieren** erzeugt den Index und die HTML-Auswahlseite neu.
 6. **Auswahlseite öffnen** öffnet die gerenderte Auswahl- und Druckansicht im Browser.
 
-Vor jeder Änderung an `S1`, `Index` oder der HTML-Auswahl erzeugt die App automatisch eine geprüfte lokale Sicherung. Es werden maximal fünf Sicherungsstände behalten.
+In der Benutzeroberfläche wird der technische Unterordner `S1` verständlich als
+**Arbeitsbestand** bezeichnet. Dadurch muss Julian keinen internen Ordnernamen kennen.
+
+Vor jeder Änderung am Arbeitsbestand, am `Index` oder an der HTML-Auswahl erzeugt die App automatisch eine geprüfte lokale Sicherung. Es werden maximal fünf Sicherungsstände behalten.
 
 Die App lädt keine Dateien selbstständig aus dem Internet herunter. Die Internetrecherche und das Speichern der Bilder bleiben bewusst im Browser. Die App verschiebt keine Originale und löscht keine Bilder.
 
@@ -32,7 +35,7 @@ Vorgehen:
 2. Setup per Doppelklick starten.
 3. Die Installation erfolgt pro Benutzer und benötigt normalerweise keine Administratorrechte.
 4. Pokémon-Manager über das Startmenü öffnen.
-5. Beim ersten Start den gewünschten Projektordner auswählen oder anlegen.
+5. Beim ersten Start den gewünschten Arbeitsordner auswählen oder anlegen.
 
 Das Setup enthält die Python-Laufzeit, die benötigten Bibliotheken, die App und den Generator. Python muss auf Julians Rechner nicht separat installiert werden.
 
@@ -59,8 +62,8 @@ Die Druck- und Auswahlseite bleibt für den schulischen Ablauf deutsch.
 3. **Dateien hinzufügen …** anklicken.
 4. Eine oder mehrere Bilddateien auswählen.
 5. In der Importprüfung die Vorschau und den Status kontrollieren.
-6. Nur gültige Dateien mit Status **Bereit** werden über **Nach S1 übernehmen** kopiert.
-7. Danach **S1 aktualisieren** anklicken.
+6. Nur gültige Dateien mit Status **Bereit** werden über **Bilder übernehmen** kopiert.
+7. Danach **Druckauswahl aktualisieren** anklicken.
 8. Mit **Auswahlseite öffnen** die Druckseite öffnen.
 
 Unterstützte Bildformate sind PNG, JPG, JPEG, GIF, BMP und WebP.
@@ -70,7 +73,7 @@ Die App erkennt exakte Duplikate über einen SHA-256-Hash. Originaldateien bleib
 ### Sicherungen und Wiederherstellung
 
 - **Sicherung erstellen** legt jederzeit einen geprüften Sicherungsstand an.
-- Vor **Nach S1 übernehmen**, **S1 aktualisieren** und einer Wiederherstellung wird automatisch gesichert.
+- Vor **Bilder übernehmen**, **Druckauswahl aktualisieren** und einer Wiederherstellung wird automatisch gesichert.
 - **Wiederherstellen …** zeigt die letzten fünf gültigen Sicherungen mit Zeitpunkt, Anlass, Dateizahl und Größe.
 - Die Wiederherstellung schützt die aktuelle Datenlage zusätzlich durch eine Vorab-Sicherung.
 - Sicherungen enthalten `S1`, `Index`, `Pokemon-Bilder-Auswahl.html` sowie ein Manifest mit SHA-256-Prüfsummen und einer unkritischen Konfigurationskopie.
@@ -79,11 +82,11 @@ Die App erkennt exakte Duplikate über einen SHA-256-Hash. Originaldateien bleib
 
 Beim ersten Start kann der Eigentümer eine vierstellige Administrator-PIN einrichten. Sie wird nicht im Klartext gespeichert und gilt nur für dieses Windows-Benutzerkonto. Die PIN ist nur für geschützte Verwaltungsaktionen erforderlich:
 
-- Projektordner wechseln;
+- Arbeitsordner wechseln;
 - Sicherung wiederherstellen;
 - Administrator-PIN verwalten.
 
-Der normale Bildimport, die Prüfung, die Übernahme nach `S1`, die S1-Aktualisierung und die Druckauswahl bleiben ohne PIN nutzbar. Vor der Übergabe an Julian sollte der Eigentümer die PIN einmalig einrichten und sicher aufbewahren.
+Der normale Bildimport, die Prüfung, die Übernahme in den Arbeitsbestand, die Aktualisierung der Druckauswahl und die Druckauswahl bleiben ohne PIN nutzbar. Die PIN bzw. das lokale App-Passwort kann später über **⚙ Einstellungen und Verwaltung → Administration …** geändert werden. Vor der Übergabe an Julian sollte der Eigentümer die PIN einmalig einrichten und sicher aufbewahren.
 
 ### Druckseite bedienen
 
@@ -100,7 +103,7 @@ Vor dem Druck die vollständige Druckvorschau prüfen. Die Ausgabe ist für A4-H
 
 ## 5. Arbeitsordner und Zuständigkeiten
 
-Der beim ersten Start gewählte Projektordner ist die Datenablage. In der Entwicklungsumgebung lautet der aktuelle Pfad:
+Der beim ersten Start gewählte Arbeitsordner ist die Datenablage. Dort speichert die App Bilddateien, Druckauswahl, Index, Protokolle und automatische Sicherungen. Bestehende Bilder werden bei der Auswahl eines Ordners nicht gelöscht. In der Entwicklungsumgebung lautet der aktuelle Pfad:
 
     C:\Codex\Julian\Pokémon
 
@@ -109,7 +112,7 @@ Die App legt folgende Ordner an:
 | Ordner | Zweck |
 |---|---|
 | `Eingang` | optionaler Sammelordner für neue Bilder |
-| `S1` | führender Bestand der Bilddateien |
+| `S1` | technischer Unterordner für den führenden Bildbestand; in der App **Arbeitsbestand** |
 | `Index` | technischer und lesbarer Bildindex |
 | `Archiv` | allgemeine Projektablage |
 | `Protokolle` | JSONL-Protokoll der Manager-Aktionen |
@@ -123,7 +126,7 @@ Wichtige Ergebnisdateien:
     C:\Codex\Julian\Pokémon\Index\pokemon-index.md
     C:\Codex\Julian\Pokémon\Index\pokemon-index.json
 
-Die HTML-Datei sollte nicht von Hand bearbeitet werden. Änderungen am Bildbestand werden über `S1` und anschließend **S1 aktualisieren** eingepflegt.
+Die HTML-Datei sollte nicht von Hand bearbeitet werden. Änderungen am Bildbestand werden über **Bilder übernehmen** und anschließend **Druckauswahl aktualisieren** eingepflegt.
 
 ## 6. Spätere Updates der App
 
@@ -160,7 +163,7 @@ Ein separates Updateprogramm ist aktuell nicht notwendig. Das neue Setup ist zug
 
 Die Installationskennung und der Installationspfad bleiben gleich. Dadurch ersetzt das Setup die Programmdateien und erhält normalerweise:
 
-- Bilder und Index im gewählten Projektordner;
+- Bilder und Index im gewählten Arbeitsordner;
 - Sprache und Projektpfad in `%APPDATA%\PokemonManager\config.json`;
 - Protokolle im Ordner `Protokolle`.
 
@@ -232,5 +235,5 @@ Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb ei
 ### Version 0.1.0 · 22.11.2026
 
 - Erste installierbare Windows-Version des Pokémon-Managers.
-- Importprüfung, Duplikaterkennung, S1-Übernahme und S1-Aktualisierung umgesetzt.
+- Importprüfung, Duplikaterkennung, Bilderübernahme und Aktualisierung der Druckauswahl umgesetzt.
 - HTML-Druckseite mit Druckvorschau und Druckbutton angebunden.

@@ -38,7 +38,7 @@ li { margin: 5px 0; }
     <ol class="steps">
       <li>Neue Bilder im Browser speichern.</li>
       <li>Im Pokémon-Manager <strong>„Dateien hinzufügen …“</strong> wählen und die Prüfung ansehen.</li>
-      <li><strong>„Nach S1 übernehmen“</strong> und anschließend <strong>„S1 aktualisieren“</strong> wählen.</li>
+      <li><strong>„Bilder übernehmen“</strong> und anschließend <strong>„Druckauswahl aktualisieren“</strong> wählen.</li>
       <li><strong>„Auswahlseite öffnen“</strong> wählen, Pokémon anhaken und die Druckvorschau prüfen.</li>
       <li>Ganz unten auf <strong>„Druckauftrag starten“</strong> klicken.</li>
     </ol>
@@ -46,14 +46,14 @@ li { margin: 5px 0; }
 
   <section class="panel">
     <h2>Pokémon-Manager</h2>
-    <p>Der Manager prüft Bildformat, Lesbarkeit, Größe und exakte Duplikate, bevor Bilder nach <code>S1</code> übernommen werden. Die normale Bildauswahl und die S1-Aktualisierung benötigen keine PIN.</p>
+    <p>Der Manager prüft Bildformat, Lesbarkeit, Größe und exakte Duplikate, bevor Bilder in den Arbeitsbestand übernommen werden. Der Arbeitsbestand liegt technisch im Unterordner <code>S1</code>. Die normale Bildauswahl und die Aktualisierung der Druckauswahl benötigen keine PIN.</p>
     <p>Vor Übernahme und Aktualisierung wird automatisch eine geprüfte Sicherung erstellt. Mit <strong>„Sicherung erstellen“</strong> kann jederzeit zusätzlich gesichert werden. <strong>„Wiederherstellen …“</strong> ist durch die Administrator-PIN geschützt und zeigt die fünf neuesten gültigen Sicherungen.</p>
-    <p>Die Administrator-PIN schützt außerdem den Wechsel des Projektordners und die Administration. Sie wird einmalig vom Eigentümer eingerichtet und nicht im Klartext gespeichert.</p>
+    <p>Die Administrator-PIN schützt außerdem den Wechsel des Arbeitsordners und die Administration. Die selten benötigten Verwaltungsfunktionen liegen gesammelt hinter dem Zahnrad oben rechts. Die PIN wird einmalig vom Eigentümer eingerichtet, nicht im Klartext gespeichert und kann dort später geändert werden.</p>
   </section>
 
   <section class="panel">
     <h2>Wofür ist die Seite da?</h2>
-    <p>Die Auswahlseite zeigt alle aktiven Pokémon-Bilder aus dem Ordner <code>S1</code>. Über die Checkboxen werden einzelne Bilder oder ein Mix aus neuen und alten Pokémon für den Druck ausgewählt.</p>
+    <p>Die Auswahlseite zeigt alle aktiven Pokémon-Bilder aus dem Arbeitsbestand (technisch <code>S1</code>). Über die Checkboxen werden einzelne Bilder oder ein Mix aus neuen und alten Pokémon für den Druck ausgewählt.</p>
     <p>Der Druck erfolgt im festgelegten <strong>2×3-Raster</strong>: A4-Hochformat, zwei Spalten, drei Zeilen und sechs Bilder pro Seite.</p>
   </section>
 
@@ -71,8 +71,8 @@ li { margin: 5px 0; }
 
   <section class="panel">
     <h2>Neue Bilder ergänzen</h2>
-    <p>Die führende Bildablage ist der im Manager gewählte Projektordner, darin der Unterordner <code>S1</code>. Unterstützt werden PNG, JPG, JPEG, GIF, BMP und WebP.</p>
-    <p>Nach der Übernahme neuer Bilder im Manager <strong>„S1 aktualisieren“</strong> wählen. Dann werden Index und HTML neu erzeugt. Neue Bilder erhalten das Kennzeichen <strong>Neu</strong>.</p>
+    <p>Die führende Bildablage ist der im Manager gewählte Arbeitsordner, darin der technische Unterordner <code>S1</code>. Unterstützt werden PNG, JPG, JPEG, GIF, BMP und WebP.</p>
+    <p>Nach der Übernahme neuer Bilder im Manager <strong>„Druckauswahl aktualisieren“</strong> wählen. Dann werden Index und HTML neu erzeugt. Neue Bilder erhalten das Kennzeichen <strong>Neu</strong>.</p>
   </section>
 
   <section>
@@ -106,7 +106,7 @@ li { margin: 5px 0; }
   <section>
     <h2>Fehlerbehebung</h2>
     <ul>
-      <li>Ein neues Bild erscheint nicht: Dateiformat und Ablage in <code>S1</code> prüfen und anschließend S1 aktualisieren beauftragen.</li>
+      <li>Ein neues Bild erscheint nicht: Dateiformat und Ablage im Arbeitsbestand (<code>S1</code>) prüfen und anschließend <strong>„Druckauswahl aktualisieren“</strong> ausführen.</li>
       <li>Ein Bild fehlt: Den im Index eingetragenen Dateipfad prüfen.</li>
       <li>Exakte Dubletten werden über den SHA-256-Hash erkannt und nicht als zweite Kachel angezeigt.</li>
     </ul>

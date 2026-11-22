@@ -1,4 +1,4 @@
-"""Local Pokémon Manager for importing images and updating S1."""
+"""Local Pokémon Manager for importing images and updating the print selection."""
 
 from __future__ import annotations
 
@@ -71,10 +71,11 @@ APP_VERSION = application_version()
 TRANSLATIONS = {
     "de": {
         "window_title": "Pokémon-Manager",
-        "subtitle": "Bilder prüfen, nach S1 übernehmen und die Druckauswahl aktualisieren.",
+        "subtitle": "Bilder prüfen, in den Arbeitsbestand übernehmen und die Druckauswahl aktualisieren.",
         "language": "Sprache:",
-        "data_storage": "Datenablage",
-        "project_folder": "Projektordner:",
+        "data_storage": "Arbeitsordner",
+        "project_folder": "Arbeitsordner auswählen",
+        "working_folder": "Arbeitsordner:",
         "change": "Ändern …",
         "open_input": "Eingangsordner öffnen",
         "import_check": "Importprüfung",
@@ -89,12 +90,17 @@ TRANSLATIONS = {
         "add_files": "Dateien hinzufügen …",
         "remove": "Aus Liste entfernen",
         "clear": "Importliste leeren",
-        "copy_s1": "Nach S1 übernehmen",
-        "update_s1": "S1 aktualisieren",
+        "copy_s1": "Bilder übernehmen",
+        "update_s1": "Druckauswahl aktualisieren",
         "open_selection": "Auswahlseite öffnen",
         "open_log": "Protokoll öffnen",
         "open_manual": "Anleitung öffnen",
-        "backup_heading": "Sicherung und Verwaltung",
+        "settings": "⚙",
+        "settings_title": "Einstellungen und Verwaltung",
+        "settings_intro": "Hier findest du den Arbeitsordner, Sicherungen und die geschützte Administration. Der normale Bildimport bleibt im Hauptfenster.",
+        "settings_folder": "Arbeitsordner ändern …",
+        "settings_close": "Schließen",
+        "backup_heading": "Sicherungen und Administration",
         "create_backup": "Sicherung erstellen",
         "restore_backup": "Wiederherstellen …",
         "administration": "Administration …",
@@ -134,20 +140,20 @@ TRANSLATIONS = {
         "admin_status_configured": "eingerichtet",
         "admin_status_missing": "noch nicht eingerichtet",
         "admin_setup_button": "PIN einrichten",
-        "admin_change_button": "PIN ändern",
+        "admin_change_button": "PIN / App-Passwort ändern",
         "admin_close_button": "Schließen",
         "admin_auth_failed": "Authentifizierung fehlgeschlagen",
         "owner_setup_hint": "Bitte richte vor der Übergabe an Julian einmalig eine Administrator-PIN ein.",
         "operation_failed_title": "Vorgang fehlgeschlagen",
         "manual_missing_title": "Anleitung fehlt",
-        "manual_missing": "Die Anleitung wurde im Projektordner nicht gefunden.",
+        "manual_missing": "Die Anleitung wurde im Arbeitsordner nicht gefunden.",
         "app_version": "Version {version}",
         "ready_sentence": "Bereit.",
         "language_changed": "Sprache geändert: {language}",
-        "info": "Bilddateien in S1: {count} · Konfiguration: {config}",
-        "first_run_title": "Datenablage",
-        "first_run_question": "Soll dieser Projektordner verwendet werden?\n\n{root}",
-        "changed": "Datenablage geändert.",
+        "info": "Bilddateien im Arbeitsbestand: {count} · Einstellungen werden automatisch gespeichert.",
+        "first_run_title": "Arbeitsordner festlegen",
+        "first_run_question": "Soll dieser Arbeitsordner verwendet werden?\n\n{root}\n\nHier speichert der Pokémon-Manager deine Bilddateien, die Druckauswahl und automatische Sicherungen. Bestehende Bilder werden nicht gelöscht.",
+        "changed": "Arbeitsordner geändert.",
         "no_new_files": "Keine neuen Dateien ausgewählt.",
         "files_checked": "{count} Datei(en) geprüft. Bereit zur Bestätigung.",
         "removed": "Aus Importliste entfernt: {name}",
@@ -156,24 +162,24 @@ TRANSLATIONS = {
         "cleared": "Importliste geleert.",
         "no_import_title": "Keine Übernahme",
         "no_import": "Es gibt keine gültigen, neuen Dateien zur Übernahme.",
-        "copied_status": "{count} Datei(en) nach S1 übernommen.",
+        "copied_status": "{count} Datei(en) in den Arbeitsbestand übernommen.",
         "copy_error_title": "Übernahme mit Fehlern",
         "copy_done_title": "Übernahme abgeschlossen",
-        "copy_done": "{count} Datei(en) wurden nach S1 kopiert.",
-        "update_failed_status": "S1-Aktualisierung fehlgeschlagen: {error}",
-        "update_failed_title": "S1-Aktualisierung fehlgeschlagen",
-        "updated_status": "S1 aktualisiert: {active} aktive Kacheln, {new} neue Einträge.",
-        "updated_title": "S1 aktualisiert",
+        "copy_done": "{count} Datei(en) wurden in den Arbeitsbestand kopiert.",
+        "update_failed_status": "Aktualisierung der Druckauswahl fehlgeschlagen: {error}",
+        "update_failed_title": "Aktualisierung der Druckauswahl fehlgeschlagen",
+        "updated_status": "Druckauswahl aktualisiert: {active} aktive Kacheln, {new} neue Einträge.",
+        "updated_title": "Druckauswahl aktualisiert",
         "updated_info": "Aktive Kacheln: {active}\nNeue Einträge: {new}\nFehlende Dateien: {missing}\n\nDie Auswahlseite kann jetzt geöffnet werden.",
         "selection_missing_title": "Auswahlseite fehlt",
-        "selection_missing": "Bitte zuerst „S1 aktualisieren“ ausführen.",
+        "selection_missing": "Bitte zuerst „Druckauswahl aktualisieren“ ausführen.",
         "file_dialog_images": "Bilddateien",
         "file_dialog_all": "Alle Dateien",
         "unsupported_format": "Nicht unterstütztes Bildformat",
         "ready": "Bereit",
         "already_exists": "Bereits vorhanden: {name}",
         "selected_twice": "Doppelt ausgewählt: {name}",
-        "copied_to_s1": "Nach S1 kopiert: {name}",
+        "copied_to_s1": "In den Arbeitsbestand kopiert: {name}",
         "file_details": "Datei: {name}\nStatus: {status}\nGröße: {size}\nMaße: {dimensions}\nHinweis: {message}",
         "unknown": "unbekannt",
         "empty_value": "–",
@@ -185,10 +191,11 @@ TRANSLATIONS = {
     },
     "en": {
         "window_title": "Pokémon Manager",
-        "subtitle": "Check images, copy them to S1 and update the print selection.",
+        "subtitle": "Check images, add them to the working collection and update the print selection.",
         "language": "Language:",
-        "data_storage": "Data folder",
-        "project_folder": "Project folder:",
+        "data_storage": "Working folder",
+        "project_folder": "Choose working folder",
+        "working_folder": "Working folder:",
         "change": "Change …",
         "open_input": "Open input folder",
         "import_check": "Import review",
@@ -203,12 +210,17 @@ TRANSLATIONS = {
         "add_files": "Add files …",
         "remove": "Remove from list",
         "clear": "Clear import list",
-        "copy_s1": "Copy to S1",
-        "update_s1": "Update S1",
+        "copy_s1": "Add images",
+        "update_s1": "Update print selection",
         "open_selection": "Open selection page",
         "open_log": "Open log",
         "open_manual": "Open guide",
-        "backup_heading": "Backup and administration",
+        "settings": "⚙",
+        "settings_title": "Settings and administration",
+        "settings_intro": "This area contains the working folder, backups and protected administration. Normal image import stays in the main window.",
+        "settings_folder": "Change working folder …",
+        "settings_close": "Close",
+        "backup_heading": "Backups and administration",
         "create_backup": "Create backup",
         "restore_backup": "Restore …",
         "administration": "Administration …",
@@ -248,20 +260,20 @@ TRANSLATIONS = {
         "admin_status_configured": "configured",
         "admin_status_missing": "not configured",
         "admin_setup_button": "Set up PIN",
-        "admin_change_button": "Change PIN",
+        "admin_change_button": "Change PIN / app password",
         "admin_close_button": "Close",
         "admin_auth_failed": "Authentication failed",
         "owner_setup_hint": "Set up an administrator PIN once before handing the app to Julian.",
         "operation_failed_title": "Operation failed",
         "manual_missing_title": "Guide missing",
-        "manual_missing": "The guide was not found in the project folder.",
+        "manual_missing": "The guide was not found in the working folder.",
         "app_version": "Version {version}",
         "ready_sentence": "Ready.",
         "language_changed": "Language changed: {language}",
-        "info": "Images in S1: {count} · Configuration: {config}",
-        "first_run_title": "Data folder",
-        "first_run_question": "Use this project folder?\n\n{root}",
-        "changed": "Data folder changed.",
+        "info": "Images in working collection: {count} · Settings are saved automatically.",
+        "first_run_title": "Choose working folder",
+        "first_run_question": "Use this working folder?\n\n{root}\n\nPokémon Manager stores your images, print selection and automatic backups here. Existing images are not deleted.",
+        "changed": "Working folder changed.",
         "no_new_files": "No new files selected.",
         "files_checked": "{count} file(s) checked. Ready for confirmation.",
         "removed": "Removed from import list: {name}",
@@ -270,24 +282,24 @@ TRANSLATIONS = {
         "cleared": "Import list cleared.",
         "no_import_title": "Nothing to copy",
         "no_import": "There are no valid new files to copy.",
-        "copied_status": "{count} file(s) copied to S1.",
+        "copied_status": "{count} file(s) added to the working collection.",
         "copy_error_title": "Copy completed with errors",
         "copy_done_title": "Copy completed",
-        "copy_done": "{count} file(s) were copied to S1.",
-        "update_failed_status": "S1 update failed: {error}",
-        "update_failed_title": "S1 update failed",
-        "updated_status": "S1 updated: {active} active cards, {new} new entries.",
-        "updated_title": "S1 updated",
+        "copy_done": "{count} file(s) were added to the working collection.",
+        "update_failed_status": "Updating the print selection failed: {error}",
+        "update_failed_title": "Updating the print selection failed",
+        "updated_status": "Print selection updated: {active} active cards, {new} new entries.",
+        "updated_title": "Print selection updated",
         "updated_info": "Active cards: {active}\nNew entries: {new}\nMissing files: {missing}\n\nThe selection page can now be opened.",
         "selection_missing_title": "Selection page missing",
-        "selection_missing": "Please run “Update S1” first.",
+        "selection_missing": "Please run “Update print selection” first.",
         "file_dialog_images": "Image files",
         "file_dialog_all": "All files",
         "unsupported_format": "Unsupported image format",
         "ready": "Ready",
         "already_exists": "Already present: {name}",
         "selected_twice": "Selected twice: {name}",
-        "copied_to_s1": "Copied to S1: {name}",
+        "copied_to_s1": "Added to working collection: {name}",
         "file_details": "File: {name}\nStatus: {status}\nSize: {size}\nDimensions: {dimensions}\nNote: {message}",
         "unknown": "unknown",
         "empty_value": "–",
@@ -582,6 +594,10 @@ class PokemonManagerApp(tk.Tk):
 
         language_frame = ttk.Frame(root)
         language_frame.grid(row=0, column=1, sticky="e")
+        self.settings_button = ttk.Button(
+            language_frame, command=self.open_settings, width=3
+        )
+        self.settings_button.pack(side="left", padx=(0, 8))
         self.language_label = ttk.Label(language_frame)
         self.language_label.pack(side="left", padx=(0, 6))
         self.language_var = tk.StringVar()
@@ -613,12 +629,14 @@ class PokemonManagerApp(tk.Tk):
         self.change_project_button.grid(
             row=0, column=2, padx=(4, 0)
         )
+        self.change_project_button.grid_remove()
         self.open_input_button = ttk.Button(
             self.path_frame, command=self.open_input_folder
         )
         self.open_input_button.grid(
             row=0, column=3, padx=(4, 0)
         )
+        self.open_input_button.grid_remove()
         self.info_var = tk.StringVar()
         ttk.Label(
             self.path_frame, textvariable=self.info_var, style="Subtitle.TLabel"
@@ -718,8 +736,10 @@ class PokemonManagerApp(tk.Tk):
         self.log_button.pack(
             side="left", padx=(6, 0)
         )
+        self.log_button.pack_forget()
         self.management_frame = ttk.LabelFrame(root, padding=(10, 6))
         self.management_frame.grid(row=5, column=0, columnspan=2, sticky="ew", pady=(10, 0))
+        self.management_frame.grid_remove()
         self.management_frame.columnconfigure(1, weight=1)
         self.management_label = ttk.Label(self.management_frame, style="Subtitle.TLabel")
         self.management_label.grid(row=0, column=0, sticky="w", padx=(0, 12))
@@ -767,11 +787,12 @@ class PokemonManagerApp(tk.Tk):
         self.title(self.t("window_title"))
         self.title_label.configure(text=self.t("window_title"))
         self.subtitle_label.configure(text=self.t("subtitle"))
+        self.settings_button.configure(text=self.t("settings"))
         self.language_label.configure(text=self.t("language"))
         self.language_combo.configure(values=list(LANGUAGE_LABELS.values()))
         self.language_var.set(LANGUAGE_LABELS[self.language])
         self.path_frame.configure(text=self.t("data_storage"))
-        self.project_label.configure(text=self.t("project_folder"))
+        self.project_label.configure(text=self.t("working_folder"))
         self.change_project_button.configure(text=self.t("change"))
         self.open_input_button.configure(text=self.t("open_input"))
         self.list_frame.configure(text=self.t("import_check"))
@@ -840,7 +861,7 @@ class PokemonManagerApp(tk.Tk):
             for path in s1.rglob("*")
             if path.is_file() and path.suffix.casefold() in SUPPORTED_EXTENSIONS
         ) if s1.exists() else 0
-        self.info_var.set(self.t("info", count=count, config=self.config_path))
+        self.info_var.set(self.t("info", count=count))
 
     def set_status(self, text: str) -> None:
         self.status_var.set(text)
@@ -1042,6 +1063,60 @@ class PokemonManagerApp(tk.Tk):
             text=self.t("admin_close_button"),
             command=dialog.destroy,
         ).pack(side="right")
+        dialog.grab_set()
+
+    def open_settings(self) -> None:
+        if self.operation_running:
+            return
+        dialog = tk.Toplevel(self)
+        dialog.title(self.t("settings_title"))
+        dialog.transient(self)
+        dialog.resizable(False, False)
+        frame = ttk.Frame(dialog, padding=18)
+        frame.pack(fill="both", expand=True)
+        ttk.Label(
+            frame,
+            text=self.t("settings_intro"),
+            justify="left",
+            wraplength=480,
+        ).pack(anchor="w", pady=(0, 12))
+        folder_box = ttk.LabelFrame(frame, text=self.t("data_storage"), padding=10)
+        folder_box.pack(fill="x", pady=(0, 12))
+        ttk.Label(folder_box, text=self.t("working_folder")).grid(
+            row=0, column=0, sticky="w"
+        )
+        ttk.Label(folder_box, text=str(self.project_root), wraplength=360).grid(
+            row=1, column=0, sticky="w", pady=(5, 0)
+        )
+
+        buttons = ttk.Frame(frame)
+        buttons.pack(fill="x")
+
+        def close_then(action) -> None:
+            dialog.destroy()
+            self.after_idle(action)
+
+        actions = (
+            (self.t("settings_folder"), self.change_project),
+            (self.t("open_input"), self.open_input_folder),
+            (self.t("create_backup"), self.create_manual_backup),
+            (self.t("restore_backup"), self.open_restore_dialog),
+            (self.t("administration"), self.open_administration),
+            (self.t("open_log"), self.open_log),
+            (self.t("open_manual"), self.open_manual),
+        )
+        for index, (label, action) in enumerate(actions):
+            row, column = divmod(index, 2)
+            ttk.Button(
+                buttons,
+                text=label,
+                command=lambda action=action: close_then(action),
+            ).grid(row=row, column=column, sticky="ew", padx=4, pady=4)
+        buttons.columnconfigure(0, weight=1)
+        buttons.columnconfigure(1, weight=1)
+        ttk.Button(
+            frame, text=self.t("settings_close"), command=dialog.destroy
+        ).pack(anchor="e", pady=(12, 0))
         dialog.grab_set()
 
     def change_project(self, require_admin: bool = True) -> None:
@@ -1364,7 +1439,7 @@ class PokemonManagerApp(tk.Tk):
         def operation():
             backup = create_backup(
                 project_root,
-                "Vor Übernahme nach S1",
+                "Vor Übernahme in den Arbeitsbestand",
                 APP_VERSION,
                 config_snapshot=config_snapshot,
                 keep=BACKUP_KEEP,
@@ -1423,7 +1498,7 @@ class PokemonManagerApp(tk.Tk):
         def operation():
             backup = create_backup(
                 project_root,
-                "Vor S1-Aktualisierung",
+                "Vor Aktualisierung der Druckauswahl",
                 APP_VERSION,
                 config_snapshot=config_snapshot,
                 keep=BACKUP_KEEP,
@@ -1483,8 +1558,8 @@ class PokemonManagerApp(tk.Tk):
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Lokaler Pokémon-Manager für Julians S1-Projekt.")
-    parser.add_argument("--project-root", type=Path, help="Projektordner für einen Test- oder Startlauf")
+    parser = argparse.ArgumentParser(description="Lokaler Pokémon-Manager für Julians Bildbestand.")
+    parser.add_argument("--project-root", type=Path, help="Arbeitsordner für einen Test- oder Startlauf")
     args = parser.parse_args()
     app = PokemonManagerApp(args.project_root)
     app.mainloop()
