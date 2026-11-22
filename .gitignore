@@ -17,6 +17,11 @@ App/__pycache__/
 App/*.pyc
 Hilfsdateien/__pycache__/
 tests/__pycache__/
+Pokemon-Manager-Programm/App/build/
+Pokemon-Manager-Programm/App/__pycache__/
+Pokemon-Manager-Programm/App/*.pyc
+Pokemon-Manager-Programm/Hilfsdateien/__pycache__/
+Pokemon-Manager-Programm/tests/__pycache__/
 .venv/
 *.log
 

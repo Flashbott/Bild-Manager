@@ -41,7 +41,6 @@ from pokemon_security import AdminPinManager
 
 APP_NAME = "PokemonManager"
 SUPPORTED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp"}
-DEFAULT_PROJECT_ROOT = Path(r"C:\Codex\Julian\Pokémon")
 DEFAULT_LANGUAGE = "de"
 LANGUAGE_LABELS = {"de": "Deutsch", "en": "English"}
 CONFIG_SCHEMA_VERSION = 2
@@ -75,7 +74,10 @@ TRANSLATIONS = {
         "language": "Sprache:",
         "data_storage": "Arbeitsordner",
         "project_folder": "Arbeitsordner auswählen",
+        "folder_dialog_title": "Arbeitsordner auswählen – Bilder und Druckauswahl werden hier gespeichert",
         "working_folder": "Arbeitsordner:",
+        "working_folder_missing": "Noch nicht ausgewählt",
+        "working_folder_required": "Bitte zuerst einen Arbeitsordner auswählen.",
         "change": "Ändern …",
         "open_input": "Eingangsordner öffnen",
         "import_check": "Importprüfung",
@@ -151,8 +153,8 @@ TRANSLATIONS = {
         "ready_sentence": "Bereit.",
         "language_changed": "Sprache geändert: {language}",
         "info": "Bilddateien im Arbeitsbestand: {count} · Einstellungen werden automatisch gespeichert.",
-        "first_run_title": "Arbeitsordner festlegen",
-        "first_run_question": "Soll dieser Arbeitsordner verwendet werden?\n\n{root}\n\nHier speichert der Pokémon-Manager deine Bilddateien, die Druckauswahl und automatische Sicherungen. Bestehende Bilder werden nicht gelöscht.",
+        "first_run_title": "Arbeitsordner auswählen",
+        "first_run_question": "Bitte wähle jetzt einen Arbeitsordner aus. Dort speichert der Pokémon-Manager deine Bilddateien, die Druckauswahl und automatische Sicherungen. Du kannst einen bestehenden Ordner wählen oder einen neuen Ordner anlegen.",
         "changed": "Arbeitsordner geändert.",
         "no_new_files": "Keine neuen Dateien ausgewählt.",
         "files_checked": "{count} Datei(en) geprüft. Bereit zur Bestätigung.",
@@ -195,7 +197,10 @@ TRANSLATIONS = {
         "language": "Language:",
         "data_storage": "Working folder",
         "project_folder": "Choose working folder",
+        "folder_dialog_title": "Choose working folder – images and print selection are saved here",
         "working_folder": "Working folder:",
+        "working_folder_missing": "Not selected yet",
+        "working_folder_required": "Please choose a working folder first.",
         "change": "Change …",
         "open_input": "Open input folder",
         "import_check": "Import review",
@@ -272,7 +277,7 @@ TRANSLATIONS = {
         "language_changed": "Language changed: {language}",
         "info": "Images in working collection: {count} · Settings are saved automatically.",
         "first_run_title": "Choose working folder",
-        "first_run_question": "Use this working folder?\n\n{root}\n\nPokémon Manager stores your images, print selection and automatic backups here. Existing images are not deleted.",
+        "first_run_question": "Please choose a working folder now. Pokémon Manager stores your images, print selection and automatic backups there. You can choose an existing folder or create a new one.",
         "changed": "Working folder changed.",
         "no_new_files": "No new files selected.",
         "files_checked": "{count} file(s) checked. Ready for confirmation.",
@@ -348,13 +353,7 @@ def admin_policy_path() -> Path:
     return app_data_dir() / "admin-policy.json"
 
 
-def default_project_root() -> Path:
-    if DEFAULT_PROJECT_ROOT.is_dir():
-        return DEFAULT_PROJECT_ROOT
-    return Path.home() / "Pokémon"
-
-
-def load_config() -> tuple[Path, bool, str]:
+def load_config() -> tuple[Path | None, bool, str]:
     path = app_config_path()
     if path.is_file():
         try:
@@ -366,10 +365,10 @@ def load_config() -> tuple[Path, bool, str]:
                 return configured, True, language
         except (OSError, ValueError, TypeError):
             pass
-    return default_project_root(), False, DEFAULT_LANGUAGE
+    return None, False, DEFAULT_LANGUAGE
 
 
-def load_project_root() -> tuple[Path, bool]:
+def load_project_root() -> tuple[Path | None, bool]:
     project_root, has_config, _language = load_config()
     return project_root, has_config
 
@@ -547,10 +546,12 @@ class PokemonManagerApp(tk.Tk):
         super().__init__()
         self.geometry("1120x760")
         self.minsize(900, 620)
-        self.project_root, has_config, self.language = load_config()
+        configured_root, _has_config, self.language = load_config()
+        self.project_root = configured_root or Path.home()
+        self.project_configured = configured_root is not None
         if initial_project_root is not None:
             self.project_root = initial_project_root.expanduser().resolve()
-            has_config = True
+            self.project_configured = True
         self.items: list[ImportItem] = []
         self.preview_image: ImageTk.PhotoImage | None = None
         self.config_path = app_config_path()
@@ -558,15 +559,17 @@ class PokemonManagerApp(tk.Tk):
         self.admin_session_until = 0.0
         self.operation_running = False
         self.operation_queue: queue.Queue[tuple[str, object]] | None = None
-        ensure_layout(self.project_root)
-        save_settings(self.project_root, self.language)
+        if self.project_configured:
+            ensure_layout(self.project_root)
+            save_settings(self.project_root, self.language)
         self._build_styles()
         self._build_ui()
         self.apply_language()
         self.refresh_project_info()
-        if not has_config and initial_project_root is None:
+        self._set_operation_state(False)
+        if not self.project_configured and initial_project_root is None:
             self.after(250, self.first_run_choice)
-        if not self.admin_pin.configured:
+        if self.project_configured and not self.admin_pin.configured:
             self.after(500, self.offer_admin_setup)
 
     def t(self, key: str, **values: object) -> str:
@@ -841,7 +844,8 @@ class PokemonManagerApp(tk.Tk):
         if selected_language == self.language:
             return
         self.language = selected_language
-        save_settings(self.project_root, self.language)
+        if self.project_configured:
+            save_settings(self.project_root, self.language)
         self.apply_language()
         self.set_status(
             self.t("language_changed", language=LANGUAGE_LABELS[self.language])
@@ -849,14 +853,14 @@ class PokemonManagerApp(tk.Tk):
         self.log_event("sprache_geaendert", sprache=self.language)
 
     def first_run_choice(self) -> None:
-        if not messagebox.askyesno(
-            self.t("first_run_title"),
-            self.t("first_run_question", root=self.project_root),
-            parent=self,
-        ):
-            self.change_project(require_admin=False)
+        self.set_status(self.t("working_folder_required"))
+        self.change_project(require_admin=False)
 
     def refresh_project_info(self) -> None:
+        if not self.project_configured:
+            self.path_var.set(self.t("working_folder_missing"))
+            self.info_var.set(self.t("working_folder_required"))
+            return
         self.path_var.set(str(self.project_root))
         s1 = self.project_root / "S1"
         count = sum(
@@ -870,6 +874,8 @@ class PokemonManagerApp(tk.Tk):
         self.status_var.set(text)
 
     def log_event(self, event: str, **data: object) -> None:
+        if not self.project_configured:
+            return
         try:
             log_path = self.project_root / "Protokolle" / "pokemon-manager.jsonl"
             log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -900,7 +906,7 @@ class PokemonManagerApp(tk.Tk):
             self.change_project_button,
             self.open_input_button,
         )
-        state = "disabled" if running else "normal"
+        state = "disabled" if running or not self.project_configured else "normal"
         for button in buttons:
             button.configure(state=state)
         if running:
@@ -1071,6 +1077,9 @@ class PokemonManagerApp(tk.Tk):
     def open_settings(self) -> None:
         if self.operation_running:
             return
+        if not self.project_configured:
+            self.change_project(require_admin=False)
+            return
         dialog = tk.Toplevel(self)
         dialog.title(self.t("settings_title"))
         dialog.transient(self)
@@ -1128,13 +1137,20 @@ class PokemonManagerApp(tk.Tk):
         ):
             return
         selected = filedialog.askdirectory(
-            title=self.t("project_folder"),
-            initialdir=str(self.project_root if self.project_root.is_dir() else Path.home()),
+            title=self.t("folder_dialog_title"),
+            initialdir=str(
+                self.project_root
+                if self.project_configured and self.project_root.is_dir()
+                else Path.home()
+            ),
             mustexist=False,
         )
         if not selected:
+            if not self.project_configured:
+                self.set_status(self.t("working_folder_required"))
             return
         self.project_root = Path(selected).expanduser().resolve()
+        self.project_configured = True
         ensure_layout(self.project_root)
         save_settings(self.project_root, self.language)
         self.items.clear()
@@ -1142,6 +1158,9 @@ class PokemonManagerApp(tk.Tk):
         self.refresh_project_info()
         self.set_status(self.t("changed"))
         self.log_event("projektordner_geaendert", projektordner=str(self.project_root))
+        self._set_operation_state(False)
+        if not self.admin_pin.configured:
+            self.after(250, self.offer_admin_setup)
 
     def open_input_folder(self) -> None:
         ensure_layout(self.project_root)

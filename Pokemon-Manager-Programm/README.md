@@ -1,7 +1,7 @@
 # Pokémon-Manager – zentrale Projektdokumentation
 
 Stand: 22.11.2026  
-Aktuelle Programmversion: 0.3.0
+Aktuelle Programmversion: 0.3.1
 
 Diese README ist die zentrale Nachschlagequelle für den Pokémon-Manager und den dazugehörigen Druckablauf. Sie beschreibt sowohl die Bedienung für Julian als auch die spätere Pflege und Aktualisierung durch den Entwickler.
 
@@ -27,7 +27,7 @@ Die App lädt keine Dateien selbstständig aus dem Internet herunter. Die Intern
 
 Für die Installation wird nur diese Datei verschickt:
 
-    C:\Codex\Julian\Pokémon\Release\Pokemon-Manager-Setup.exe
+    C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Release\Pokemon-Manager-Setup.exe
 
 Vorgehen:
 
@@ -35,13 +35,13 @@ Vorgehen:
 2. Setup per Doppelklick starten.
 3. Die Installation erfolgt pro Benutzer und benötigt normalerweise keine Administratorrechte.
 4. Pokémon-Manager über das Startmenü öffnen.
-5. Beim ersten Start den gewünschten Arbeitsordner auswählen oder anlegen.
+5. Beim ersten Start direkt den gewünschten Arbeitsordner auswählen oder anlegen. Es ist kein fester Julian-Pfad voreingestellt.
 
 Das Setup enthält die Python-Laufzeit, die benötigten Bibliotheken, die App und den Generator. Python muss auf Julians Rechner nicht separat installiert werden.
 
 Das Setup enthält nicht Julians bisherige Bildsammlung. Wenn Julian mit einem leeren Bestand startet, ist das beabsichtigt. Die App legt fehlende Arbeitsordner selbst an.
 
-Die Installationsdatei enthält außerdem die Bedienungsanleitung und diese README. Das ausgewählte Projektverzeichnis bleibt eine separate Datenablage und muss bei einem neuen Rechner bewusst gewählt oder neu aufgebaut werden.
+Die Installationsdatei enthält außerdem die Bedienungsanleitung und diese README. Der ausgewählte Arbeitsordner bleibt eine separate Datenablage und muss bei einem neuen Rechner bewusst gewählt oder neu aufgebaut werden.
 
 ## 3. Sprache
 
@@ -122,9 +122,9 @@ Die App legt folgende Ordner an:
 
 Wichtige Ergebnisdateien:
 
-    C:\Codex\Julian\Pokémon\Pokemon-Bilder-Auswahl.html
-    C:\Codex\Julian\Pokémon\Index\pokemon-index.md
-    C:\Codex\Julian\Pokémon\Index\pokemon-index.json
+    <gewählter Arbeitsordner>\Pokemon-Bilder-Auswahl.html
+    <gewählter Arbeitsordner>\Index\pokemon-index.md
+    <gewählter Arbeitsordner>\Index\pokemon-index.json
 
 Die HTML-Datei sollte nicht von Hand bearbeitet werden. Änderungen am Bildbestand werden über **Bilder auswählen …** eingepflegt und anschließend mit **Druckauswahl aktualisieren** in die Auswahlseite übernommen.
 
@@ -137,20 +137,20 @@ Ein separates Updateprogramm ist aktuell nicht notwendig. Das neue Setup ist zug
 1. Änderungen im App-Code durchführen.
 2. Die zentrale Versionsdatei erhöhen:
 
-       C:\Codex\Julian\Pokémon\VERSION.json
+       C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\VERSION.json
 
-   Beispiel: `0.3.0` → `0.4.0`.
+   Beispiel: `0.3.1` → `0.4.0`.
 3. Optional die festgelegten Build-Abhängigkeiten installieren:
 
-       C:\Codex\Julian\Pokémon\Installer\build_setup.ps1 -InstallDependencies
+       C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Installer\build_setup.ps1 -InstallDependencies
 
 4. Den Build ausführen:
 
-       C:\Codex\Julian\Pokémon\Installer\build_setup.ps1
+       C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Installer\build_setup.ps1
 
 5. Die neue Datei entsteht hier:
 
-       C:\Codex\Julian\Pokémon\Release\Pokemon-Manager-Setup.exe
+       C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Release\Pokemon-Manager-Setup.exe
 
 6. Vor der Übergabe Prüfsumme und Manifest prüfen. Für Julian genügt anschließend die neue Setup-Datei; die Prüfsummendatei kann zur Kontrolle mitgegeben werden.
 
@@ -175,9 +175,9 @@ Nicht erforderlich für ein Update sind Python, die Build-Werkzeuge, der Ordner 
 
 Der Build erzeugt zusätzlich:
 
-    C:\Codex\Julian\Pokémon\Release\Pokemon-Manager-Setup.exe.sha256
-    C:\Codex\Julian\Pokémon\Release\release-manifest.json
-    C:\Codex\Julian\Pokémon\Release\RELEASE_NOTES_0.3.0.md
+    C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Release\Pokemon-Manager-Setup.exe.sha256
+    C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Release\release-manifest.json
+    C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Release\RELEASE_NOTES_0.3.1.md
 
 Die Version ist noch nicht code-signiert. Die SHA-256-Prüfsumme dokumentiert die Integrität; eine spätere Authenticode-Signierung kann ergänzt werden, ohne den Updateablauf grundsätzlich zu ändern.
 
@@ -201,19 +201,25 @@ Die Version ist noch nicht code-signiert. Die SHA-256-Prüfsumme dokumentiert di
 
 Stand 22.11.2026:
 
-- `VERSION.json` steht auf `0.3.0`; der Quelltext ist syntaxgeprüft.
-- Sieben automatisierte Tests laufen erfolgreich: Sicherung/Wiederherstellung, Aufbewahrung von fünf Ständen, PIN, Konfiguration, Generator/Druckbutton und UTF-8.
-- Die gepackte Windows-Anwendung startet sichtbar mit deutscher Oberfläche, Version `0.3.0`, Sicherungs- und Administrationsbereich.
+- `VERSION.json` steht auf `0.3.1`; der Quelltext ist syntaxgeprüft.
+- Acht automatisierte Tests laufen erfolgreich: Sicherung/Wiederherstellung, Aufbewahrung von fünf Ständen, PIN, Konfiguration, freie Erststart-Ordnerauswahl, Generator/Druckbutton und UTF-8.
+- Die gepackte Windows-Anwendung startet sichtbar mit deutscher Oberfläche, Version `0.3.1`, freier Erststart-Ordnerauswahl, Sicherungs- und Administrationsbereich.
 - Der aktuelle Projektbestand enthält 52 Bilddateien in `S1`.
 - Die vorhandene HTML-Auswahlseite enthält weiterhin den unteren Button **Druckauftrag starten**.
-- Der lokale Git-Stand ist als Commit `8aba097` auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
-- Die neue PyInstaller-Ausgabe liegt unter `Release\dist\Pokemon-Manager`.
-
-**Offen / nicht nachgewiesen:** Auf diesem Build-Rechner fehlt aktuell der Inno-Setup-Compiler. Deshalb wurde noch keine neue `Release\Pokemon-Manager-Setup.exe` für Version `0.3.0` erzeugt; die dort vorhandene Setup-Datei ist der ältere Stand `0.2.0` und darf nicht als neue Version weitergegeben werden. Nach Installation des freigegebenen Build-Werkzeugs muss der Build erneut laufen, danach sind Setup, SHA-256, Manifest und Updateinstallation als End-to-End-Schritt zu prüfen.
+- Der lokale Git-Stand wird nach der Abschlussprüfung als neuer Commit auf Branch `main` gesichert; Bilddaten, Backups, Index und Build-Ausgaben sind nicht versioniert.
+- Die neue PyInstaller-Ausgabe liegt unter `Pokemon-Manager-Programm\Release\dist\Pokemon-Manager`.
 
 Der Installer ist nicht code-signiert; Windows kann beim ersten Start deshalb einen SmartScreen-Hinweis anzeigen. Ein Erstlauf mit Julians tatsächlichem Windows-Benutzerkonto und Drucker bleibt zusätzlich sinnvoll.
 
 ## 9. Änderungsverlauf
+
+### Version 0.3.1 · 22.11.2026
+
+- Programmdateien in einem eigenen Ordner `Pokemon-Manager-Programm` gebündelt und Benutzerdaten davon getrennt;
+- festen Entwicklungsordner entfernt; der Arbeitsordner wird beim ersten Start frei ausgewählt oder neu angelegt;
+- App-Bedienelemente bleiben bis zur Auswahl eines Arbeitsordners geschützt deaktiviert;
+- Erklärung des Arbeitsordners und der dort angelegten Unterordner verbessert;
+- Build- und Release-Nachweise auf den aktuellen Installer aktualisiert.
 
 ### Version 0.3.0 · 22.11.2026
 

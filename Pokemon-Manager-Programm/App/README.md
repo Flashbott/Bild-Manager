@@ -2,7 +2,7 @@
 
 Die vollständige, langfristige Projekt- und Bedienungsdokumentation steht in:
 
-`C:\Codex\Julian\Pokémon\README.md`
+`C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\README.md`
 
 Die App steuert Julians lokalen Pokémon-Arbeitsablauf:
 
@@ -29,14 +29,14 @@ Die selten benötigten Funktionen **Arbeitsordner ändern**, **Eingangsordner ö
 
 1. `Pokemon-Manager-Setup.exe` auf Julians Rechner kopieren und starten.
 2. Die Installation erfolgt pro Benutzer und benötigt normalerweise keine Administratorrechte.
-3. Beim ersten Start den bestehenden Arbeitsordner `C:\Codex\Julian\Pokémon` auswählen, sofern dieser verwendet wird.
+3. Beim ersten Start direkt einen eigenen Arbeitsordner auswählen oder neu anlegen. Es ist kein fester Julian-Pfad voreingestellt.
 4. Danach kann die App über das Startmenü geöffnet werden.
 
 Die App legt fehlende Arbeitsordner wie `Eingang`, `S1`, `Index`, `Archiv`, `Protokolle` und `Backups` selbstständig an.
 
 Für spätere Programmänderungen wird die Versionsnummer in
-`C:\Codex\Julian\Pokémon\VERSION.json` erhöht und anschließend
-`C:\Codex\Julian\Pokémon\Installer\build_setup.ps1` ausgeführt. Die daraus entstehende
+`C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\VERSION.json` erhöht und anschließend
+`C:\Codex\Julian\Pokémon\Pokemon-Manager-Programm\Installer\build_setup.ps1` ausgeführt. Die daraus entstehende
 `Pokemon-Manager-Setup.exe` ist zugleich Installations- und Update-Datei.
 
 Der Build erzeugt außerdem eine SHA-256-Datei, ein Release-Manifest und Release-Notizen. Die App lädt keine Updates automatisch aus dem Internet.

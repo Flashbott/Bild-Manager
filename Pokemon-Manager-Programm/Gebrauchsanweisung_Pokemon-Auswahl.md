@@ -55,7 +55,7 @@ Der Filter ändert nur die Anzeige. Bereits gesetzte Haken bleiben erhalten.
 
 Die technische Bildquelle des Arbeitsbestands ist:
 
-    C:\Codex\Julian\Pokémon\S1
+    <gewählter Arbeitsordner>\S1
 
 Unterstützte Bildformate:
 
@@ -94,19 +94,19 @@ Der automatisch erzeugte Anzeigename wird ebenfalls angepasst. Ein im Markdown-I
 
 ### Führender Markdown-Index
 
-    C:\Codex\Julian\Pokémon\Index\pokemon-index.md
+    <gewählter Arbeitsordner>\Index\pokemon-index.md
 
 Diese Datei ist die lesbare Übersicht mit Anzeigename, Dateipfad, Status, Neu-Kennzeichnung, Reihenfolge und SHA-256-Hash.
 
 ### Technischer JSON-Index
 
-    C:\Codex\Julian\Pokémon\Index\pokemon-index.json
+    <gewählter Arbeitsordner>\Index\pokemon-index.json
 
 Diese Datei wird vom Generator für die technische Verarbeitung erzeugt.
 
 ### Aktualisierungsgenerator
 
-    C:\Codex\Julian\Pokémon\Hilfsdateien\pokemon_auswahl_aktualisieren.py
+    <Programmordner>\Hilfsdateien\pokemon_auswahl_aktualisieren.py
 
 Die HTML sollte nicht von Hand bearbeitet werden. Änderungen an Bildern oder Namen werden über den Arbeitsbestand (`S1`) und den Index eingepflegt und danach durch **Druckauswahl aktualisieren** neu erzeugt.
 

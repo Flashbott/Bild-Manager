@@ -131,7 +131,7 @@ Erstellt: $((Get-Date).ToString("yyyy-MM-dd HH:mm:ss zzz"))
 
 ## Prüfsumme
 
-SHA-256: `$hash
+SHA-256: $hash
 
 ## Update-Hinweis
 
