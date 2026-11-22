@@ -88,10 +88,10 @@ TRANSLATIONS = {
         "format_heading": "Format",
         "target_heading": "Ziel",
         "add_files": "Bilder auswählen …",
-        "add_files_help": "Öffnet die Dateiauswahl, standardmäßig im Downloads-Ordner. Wähle ein oder mehrere Bilder aus. Sie werden zuerst geprüft; erst über „Bilder übernehmen“ in den Arbeitsbestand kopiert. Die Originale bleiben erhalten.",
+        "add_files_help": "Öffnet die Dateiauswahl, standardmäßig im Downloads-Ordner. Wähle ein oder mehrere Bilder aus. Nach dem Bestätigen werden gültige neue Bilder automatisch geprüft und in den Arbeitsbestand kopiert. Die Originale bleiben erhalten.",
         "remove": "Aus Liste entfernen",
         "clear": "Importliste leeren",
-        "copy_s1": "Bilder übernehmen",
+        "copy_s1": "Automatische Übernahme",
         "update_s1": "Druckauswahl aktualisieren",
         "open_selection": "Auswahlseite öffnen",
         "open_log": "Protokoll öffnen",
@@ -209,10 +209,10 @@ TRANSLATIONS = {
         "format_heading": "Format",
         "target_heading": "Target",
         "add_files": "Choose images …",
-        "add_files_help": "Opens the file picker, starting in Downloads when available. Choose one or more images. They are checked first and copied to the working collection only after “Add images”. The originals remain unchanged.",
+        "add_files_help": "Opens the file picker, starting in Downloads when available. Choose one or more images. After confirmation, valid new images are checked and copied to the working collection automatically. The originals remain unchanged.",
         "remove": "Remove from list",
         "clear": "Clear import list",
-        "copy_s1": "Add images",
+        "copy_s1": "Automatic import",
         "update_s1": "Update print selection",
         "open_selection": "Open selection page",
         "open_log": "Open log",
@@ -722,6 +722,7 @@ class PokemonManagerApp(tk.Tk):
             style="Primary.TButton",
         )
         self.copy_button.pack(side="left", padx=6)
+        self.copy_button.pack_forget()
         self.update_button = ttk.Button(
             right,
             command=self.update_s1,
@@ -1188,6 +1189,7 @@ class PokemonManagerApp(tk.Tk):
         self.refresh_tree()
         self.set_status(self.t("files_checked", count=len(new_items)))
         self.log_event("dateien_geprueft", anzahl=len(new_items))
+        self.import_to_s1(show_result=False)
 
     def refresh_tree(self) -> None:
         for child in self.tree.get_children():
@@ -1436,14 +1438,17 @@ class PokemonManagerApp(tk.Tk):
             return
         open_path(manual)
 
-    def import_to_s1(self) -> None:
+    def import_to_s1(self, show_result: bool = True) -> None:
         ready = [item for item in self.items if item.status == "Bereit" and item.destination]
         if not ready:
-            messagebox.showinfo(
-                self.t("no_import_title"),
-                self.t("no_import"),
-                parent=self,
-            )
+            if show_result:
+                messagebox.showinfo(
+                    self.t("no_import_title"),
+                    self.t("no_import"),
+                    parent=self,
+                )
+            else:
+                self.set_status(self.t("no_import"))
             return
         ensure_layout(self.project_root)
         project_root = self.project_root
@@ -1495,7 +1500,7 @@ class PokemonManagerApp(tk.Tk):
             )
             if errors:
                 messagebox.showerror(self.t("copy_error_title"), "\n".join(errors), parent=self)
-            else:
+            elif show_result:
                 messagebox.showinfo(
                     self.t("copy_done_title"),
                     self.t("copy_done", count=copied),

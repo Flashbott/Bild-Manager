@@ -55,14 +55,14 @@ Die Druck- und Auswahlseite bleibt für den schulischen Ablauf deutsch.
 
 ## 4. Bedienung für Julian
 
-### Neue Bilder übernehmen
+### Neue Bilder auswählen und übernehmen
 
 1. Bild im Browser speichern, zum Beispiel im Ordner `Downloads`.
 2. Pokémon-Manager öffnen.
 3. **Bilder auswählen …** anklicken.
 4. Eine oder mehrere Bilddateien auswählen.
 5. In der Importprüfung die Vorschau und den Status kontrollieren.
-6. Nur gültige Dateien mit Status **Bereit** werden über **Bilder übernehmen** kopiert.
+6. Nach dem Bestätigen werden gültige neue Bilder automatisch in den Arbeitsbestand kopiert.
 7. Danach **Druckauswahl aktualisieren** anklicken.
 8. Mit **Auswahlseite öffnen** die Druckseite öffnen.
 
@@ -73,7 +73,7 @@ Die App erkennt exakte Duplikate über einen SHA-256-Hash. Originaldateien bleib
 ### Sicherungen und Wiederherstellung
 
 - **Sicherung erstellen** legt jederzeit einen geprüften Sicherungsstand an.
-- Vor **Bilder übernehmen**, **Druckauswahl aktualisieren** und einer Wiederherstellung wird automatisch gesichert.
+- Vor der automatischen Übernahme, vor der Aktualisierung der Druckauswahl und vor einer Wiederherstellung wird automatisch gesichert.
 - **Wiederherstellen …** zeigt die letzten fünf gültigen Sicherungen mit Zeitpunkt, Anlass, Dateizahl und Größe.
 - Die Wiederherstellung schützt die aktuelle Datenlage zusätzlich durch eine Vorab-Sicherung.
 - Sicherungen enthalten `S1`, `Index`, `Pokemon-Bilder-Auswahl.html` sowie ein Manifest mit SHA-256-Prüfsummen und einer unkritischen Konfigurationskopie.
@@ -126,7 +126,7 @@ Wichtige Ergebnisdateien:
     C:\Codex\Julian\Pokémon\Index\pokemon-index.md
     C:\Codex\Julian\Pokémon\Index\pokemon-index.json
 
-Die HTML-Datei sollte nicht von Hand bearbeitet werden. Änderungen am Bildbestand werden über **Bilder übernehmen** und anschließend **Druckauswahl aktualisieren** eingepflegt.
+Die HTML-Datei sollte nicht von Hand bearbeitet werden. Änderungen am Bildbestand werden über **Bilder auswählen …** eingepflegt und anschließend mit **Druckauswahl aktualisieren** in die Auswahlseite übernommen.
 
 ## 6. Spätere Updates der App
 

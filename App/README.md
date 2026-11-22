@@ -7,12 +7,10 @@ Die vollständige, langfristige Projekt- und Bedienungsdokumentation steht in:
 Die App steuert Julians lokalen Pokémon-Arbeitsablauf:
 
 1. Bilddateien werden wie gewohnt im Browser gesucht und gespeichert.
-2. Über **Bilder auswählen …** werden mehrere Dateien ausgewählt.
-   Der Dialog startet standardmäßig im Downloads-Ordner. Die Auswahl wird zunächst geprüft; erst **Bilder übernehmen** kopiert gültige neue Bilder in den Arbeitsbestand. Originale werden nicht verschoben oder gelöscht.
-3. Die App prüft Format, Lesbarkeit, Hash und mögliche Dubletten.
-4. Nach Bestätigung werden neue Dateien in den **Arbeitsbestand** kopiert.
-5. **Druckauswahl aktualisieren** erzeugt Index und HTML-Auswahlseite.
-6. **Auswahlseite öffnen** öffnet die gerenderte Druck- und Auswahlansicht im Browser.
+2. Über **Bilder auswählen …** werden mehrere Dateien ausgewählt. Der Dialog startet standardmäßig im Downloads-Ordner. Nach dem Bestätigen prüft die App die Auswahl und kopiert gültige neue Bilder automatisch in den Arbeitsbestand. Originale werden nicht verschoben oder gelöscht.
+3. Die Importprüfung zeigt Format, Lesbarkeit, Hash, mögliche Dubletten und den Übernahmestatus.
+4. **Druckauswahl aktualisieren** erzeugt Index und HTML-Auswahlseite.
+5. **Auswahlseite öffnen** öffnet die gerenderte Druck- und Auswahlansicht im Browser.
 
 Der Arbeitsbestand liegt technisch weiterhin im Unterordner `S1`. Dieser interne Name
 wird in der Oberfläche nicht mehr verwendet, damit der tägliche Ablauf verständlich bleibt.
